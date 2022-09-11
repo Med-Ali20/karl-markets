@@ -1,0 +1,133 @@
+.adminDashboard {
+    min-height: 79vh;
+    max-width: 104.5rem;
+    margin: 0 auto;
+}
+
+
+.formSection {
+    margin: 0 auto;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.formHeader {
+    text-align: center;
+    color: #222831;
+    opacity: 0.8;
+    font-size: 3.4rem;
+    font-weight: 300;
+    letter-spacing: 0.7px;
+}
+
+.formHeader:after {
+    display: block;
+    content: "";
+    width: 45rem;
+    height: 1px;
+    background-color: #ccc;
+    margin-top: 2rem;
+    opacity: 0.7;
+    margin-bottom: 2rem;
+}
+
+.inputArea {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    margin-bottom: 1.5rem;
+}
+
+
+
+.inputField {
+    width: 45rem;
+    height: 3.5rem;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #ccc;
+    font-size: 1.5rem;
+    font-family: sans-serif;
+    text-align: right;
+    color: #222831b7;
+    
+}
+
+
+.label {
+    color: #222831;
+    opacity: 0.8;
+    margin-bottom: 2px;
+    font-size: 1.4rem;
+}
+
+
+.fileInput {
+    align-self: flex-start;
+}
+
+
+
+.cta {
+    background-color: #FFA62B;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #fff;
+    padding: 0.8rem 3.6rem 1rem 5.2rem;
+    border-radius: 1.5rem;
+    position: relative;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.2) ;
+    display: inline-block;
+    margin: 5rem 0;
+    transition: filter 0.3s;
+    box-sizing: border-box;
+}
+
+.cta:hover {
+    filter: brightness(110%);
+}
+
+
+.ctaArrow {
+    position: absolute;
+    top: 1.1rem;
+    left: 3.4rem;
+    width: 1.4rem;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+    
+.formHeader {
+    text-align: right;
+}
+
+
+.formHeader:after {
+    display: block;
+    content: "";
+    width: 30rem;
+    height: 1px;
+    background-color: #ccc;
+    margin-top: 2rem;
+    opacity: 0.7;
+    margin-bottom: 2rem;
+}
+
+
+.inputField {
+    width: 30rem;
+}
+
+
+
+.fileInput {
+    align-self: flex-end;
+    width: 30rem;
+}
+
+
+}

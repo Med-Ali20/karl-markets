@@ -1,0 +1,254 @@
+.userDashboard {
+    min-height: 79vh;
+    max-width: 104.5rem;
+    margin: 0 auto;
+    padding-top: 5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.infoTable {
+    background: #39a2db1a;
+    margin-top: 5rem;
+}
+
+.customerInfo {
+    text-align: right;
+    padding-right: 1rem;
+    color: #222831;
+    opacity: 0.8;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #fff;
+}
+
+.customerInfo h3 {
+    font-weight: 400;
+}
+
+.tableHeader {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 1rem;
+    border-bottom: 1px solid #39a2db1a;
+}
+
+.tableHeader h2 {
+    margin: 0 5rem;
+    font-weight: 500;
+    color: #222831;
+    opacity: 0.7;
+    letter-spacing: 0.7px;
+    font-size: 1.9rem;
+}
+
+.tableHeader h2:first-child {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.tableHeader h2:last-child {
+    margin-left: 4rem;
+}
+
+
+.tableContent {
+    padding: 1rem;
+    
+}
+
+.tableItem {
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+}
+
+
+.total,
+.quantityControls,
+.itemPrice
+ {
+    margin: 0 5rem;
+
+}
+
+.total {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.itemPrice {
+    font-weight: 500;
+    color: #222831;
+    opacity: 0.7;
+    letter-spacing: 0.7px;
+    font-size: 1.9rem;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-left: 4rem;
+}
+
+.pound {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+
+.productImage {
+    width: 10rem;
+    margin-right: 0;
+    margin-top: 0.8rem;
+    margin-left: 0.6rem;
+}
+
+.productName {
+    margin-left: auto;
+    font-size: 1.7rem;
+    margin-top: 0;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+.quantityControls {
+    margin-left: 3rem;
+    margin-right: 7.3rem;
+}
+
+
+.quantity {
+    font-weight: bold;
+    background: #39A2DB;
+    color: #fff;
+    font-size: 1.8rem;
+    padding: 0 1rem;
+    margin: 2px;
+}
+
+.tableContent h3:last-child {
+    margin-left: 5rem;
+    font-weight: 400;
+    font-size: 1.7rem;
+}
+
+.totalPriceText {
+    color: #39A2DB;
+}
+
+.pound2 {
+    color: #39A2DB;
+}
+
+
+.cta {
+    background-color: #FFA62B;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #fff;
+    padding: 0.8rem 3.6rem 1rem 4.8rem;
+    border-radius: 1.5rem;
+    position: relative;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.2) ;
+    display: inline-block;
+    transition: filter 0.3s;
+    box-sizing: border-box;
+    width: 17.5rem;
+    margin-left: auto;
+}
+
+.cta:hover {
+    filter: brightness(110%);
+}
+
+
+.ctaArrow {
+    position: absolute;
+    top: 1.1rem;
+    left: 3.4rem;
+    width: 1.4rem;
+}
+
+
+
+.totalPaid {
+    align-self: flex-end;
+    display: flex;
+    flex-direction: row-reverse;
+    opacity: 0.7;
+
+}
+
+
+.totalPaidText {
+    font-weight: 400;
+    font-size: 1.8rem;
+    margin-left: 1rem;
+}
+
+.totalPaidPrice {
+    font-weight: 400;
+    margin-top: 1.5rem;
+    font-size: 1.8rem;
+    margin-left: 1rem;
+    display: flex;
+}
+
+.totalPaidPrice span {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+    .productImage {
+        display: none;
+    }
+
+    .tableContent {
+        padding: 1rem 0;
+    }
+
+    .productName {
+        text-align: right;
+        padding-right: 8px;
+    }
+
+    .tableHeader h2:last-child {
+        display: none;
+    }
+
+    .total {
+        display: none;
+    }
+
+    .itemPrice {
+        margin-left: 4rem;
+    }
+
+    .quantityControls {
+        margin-left: 2.5rem;
+    }
+    
+    .totalPaid,
+    .cta {
+        margin-right: 2rem;
+    }
+
+    .recieved {
+        display: none;
+
+    }
+
+    .cancel {
+        top: 5rem;
+        right: 51rem;
+    }
+
+    .tableItem {
+        padding: 1rem 0;
+    }
+}

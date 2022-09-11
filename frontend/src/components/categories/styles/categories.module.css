@@ -1,0 +1,156 @@
+.categorySection {
+    min-height: 100vh;
+    max-width: 104.5rem;
+    padding: 0;
+    margin: 0 auto;
+   
+}
+
+.categoryName {
+    color: #6b6b6b;
+    width: 100%;
+    text-align: right;
+    margin-top: 1rem;
+    font-size: 3rem;
+}
+
+.categoryName:after {
+    display: block;
+    content: "";
+    margin-top: 1.5rem;
+    width: 104.5rem;
+    opacity: 0.1;
+    background: #000;
+    height: 1px;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 32rem);
+    grid-gap: 4.25rem;
+    padding: 0;
+    max-width: 104.5rem;
+    margin: 3rem auto;
+    justify-content: center;
+}
+
+.productCard {
+    margin: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.productName {
+    font-size: 1.6rem;
+    margin-top: 2px;
+    color: #505050;
+    height: 30px;
+    overflow: hidden;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+
+}
+
+.productName:hover {
+    border-bottom: 1px solid #ccc;
+}
+
+.price {
+    font-size: 2.4rem;
+    line-height: 0;
+    margin-top: 5px;
+    display: flex;
+    font-weight: 300;
+    color: rgb(121, 121, 121);
+}
+
+.pound {
+    font-size: 1.6rem;
+    margin-right: 2px;
+}
+
+.cta {
+    display: flex;
+    margin-top: 0.4rem;
+    flex-direction: row-reverse;
+}
+
+.addToCart {
+    background: #FFA62B;
+    margin-left: 1rem;
+    font-size: 1.4rem;
+    padding: 1rem 3.7rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+.addIcon {
+    width: 1rem;
+    margin-right: 2px;
+    display: inline-block;
+}
+
+.buy {
+    background: #53c1fc;
+    font-size: 1.4rem;
+    padding: 1rem 4rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    color: #fff;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.buy:hover,
+.addToCart:hover {
+    filter: brightness(110%);
+}
+
+.arrow {
+    width: 1rem;
+    margin-right: 2px;
+    display: inline-block;
+}
+
+
+.productImg {
+    border-radius: 1rem;
+    border-top-right-radius: 0.3rem;
+    border-top-left-radius: 0.3rem;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+    
+    .products {
+
+        grid-template-columns: repeat(auto-fit, 35rem);
+    }
+    .addToCart {
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+        font-weight: bold;
+        color: #fff;
+        transition: all 0.3s;
+    }
+    
+    .buy {
+        background: #53c1fc;
+        font-size: 1.4rem;
+        padding: 1rem 4rem;
+        border-radius: 0.5rem;
+        font-weight: bold;
+        color: #fff;
+        transition: all 0.3s;
+    }
+
+    .categoryName {
+        text-align: center;
+    }
+}

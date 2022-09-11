@@ -1,0 +1,149 @@
+.productSection {
+    min-height: 100vh;
+    max-width: 104.5rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 6rem;
+    padding-top: 2rem;
+}
+
+.productDetails {
+    text-align: right;
+    padding: 0 2rem;
+}
+
+.productName {
+    margin: 0;
+    padding: 0;
+    letter-spacing: 1px;
+    font-size: 2.2rem;
+    margin-top: 0;
+}
+
+.productName:after {
+    display: block;
+    content: "";
+    margin-top: 0.5rem;
+    width: 100%;
+    opacity: 0.1;
+    background: #000;
+    height: 1px;
+}
+
+.productDescription {
+    color: #595555;
+    opacity: 0.8;
+    font-size: 1.8rem;
+    letter-spacing: 0.5px;
+    margin: 3rem 0;
+}
+
+.cta {
+    display: flex;
+    margin-top: 6rem;
+    flex-direction: row-reverse;
+    cursor: pointer;
+}
+
+.addToCart {
+    background: #FFA62B;
+    margin-left: 1rem;
+    font-size: 1.4rem;
+    padding: 1rem 3.7rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+.addIcon {
+    width: 1rem;
+    margin-right: 2px;
+    display: inline-block;
+}
+
+.buy {
+    background: #53c1fc;
+    font-size: 1.4rem;
+    padding: 1rem 4rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+.buy:hover,
+.addToCart:hover {
+    filter: brightness(110%);
+}
+
+.arrow {
+    width: 1rem;
+    margin-right: 2px;
+    display: inline-block;
+}
+
+.subImages {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+}
+
+.showcaseMain {
+    border-radius: 12px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    overflow: hidden;
+}
+
+.subImage {
+    margin: 0 1rem;
+    width: 11.3125rem;
+    height: 11.3125rem;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: 2px solid transparent;
+    overflow: hidden;
+    
+}
+
+.subImage:focus,
+.subImage:active {
+    outline: 2px solid #53c1fc;
+}
+
+.subImage:first-child,
+.subImage:last-child {
+    margin: 0;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .productSection {
+        grid-template-columns: 1fr;
+    }
+
+        
+    .productDetails {
+        text-align: center;
+    }
+    .cta {
+        justify-content: center;
+    }
+
+    .showcase {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        overflow: hidden;
+    }
+
+    .showcaseMain {
+        height: 60%;
+    }
+
+}

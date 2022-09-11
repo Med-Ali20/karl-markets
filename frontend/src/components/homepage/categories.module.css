@@ -1,0 +1,197 @@
+.categories {
+    display: grid;
+    max-width: 104.5rem;
+    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 51.75rem)) ;
+    grid-gap: 1rem;
+    overflow: hidden;
+    justify-content: center;
+    
+}
+
+.category {
+    position: relative;
+    transition: all 0.4s;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+
+}
+
+.category:hover, .category:hover:after {
+    background-size: 105%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+
+.category:after {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: all 0.4s;
+    border-radius: 4px;
+}
+
+
+
+.category1 {
+    background-image: url('../../assets/images/mobile-accessories.png');
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 32rem;
+    
+}
+
+
+.categoryName {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #fff;
+    padding: 1rem;
+    margin: 0;
+    font-size: 2rem;
+    min-width: 20rem;
+    text-align: center;
+    z-index: 2;
+    background: rgba(255, 166, 43, 1);
+    border-top-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    transition: transform 0.2s ease-in-out;
+    transform: translateY(100%);
+}
+
+.category:hover .categoryName {
+    transform: translateY(0);
+}
+
+
+.categoryName1 {
+    padding: 1rem 2rem;
+}
+
+.categoryName3 {
+    padding: 1rem 2.5rem;
+    background: rgba(57, 162, 219, 1);
+}
+
+.categoryName4 {
+    padding: 1rem 2.5rem;
+    background: rgba(57, 162, 219, 1);
+
+}
+
+.categoryName8 {
+    padding: 1rem 2.5rem;
+    background: rgba(57, 162, 219, 1);
+
+}
+
+
+.categoryName7 {
+    line-height: 3.5rem;
+    padding: 1rem;
+    font-size: 2.4rem;
+    letter-spacing: 1px;
+    background: rgba(57, 162, 219, 1);
+
+}
+
+.category2 {
+    background-image: url('../../assets/images/bags.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 32rem;
+}
+
+.category3 {
+    background-image: url('../../assets/images/personal-care.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 32rem;
+}
+
+.category4 {
+    background-image: url('../../assets/images/pet-products.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 32rem;
+}
+
+.category5 {
+    background-image: url('../../assets/images/smart-watches.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 32rem;
+}
+
+.category6 {
+    background-image: url('../../assets/images/furnature.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 32rem;
+}
+
+.category7 {
+    background-image: url('../../assets/images/gaming.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 32rem;
+}
+
+.category8 {
+    background-image: url('../../assets/images/computer-accessories.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 110%;
+    height: 32rem;
+}
+
+.category8:hover {
+    background-size: 115%;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .categories {
+        justify-content: center;
+        grid-template-columns: repeat(auto-fit, minmax(60rem, 51.75rem)) ;
+    }
+
+    .category {
+        box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.3);
+
+    }
+
+    .category:after {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .categoryName {
+        transform: translateY(0);
+    }
+    .categoryName3,
+    .categoryName4,
+    .categoryName7,
+    .categoryName8 {
+        background: rgba(255, 166, 43, 1);
+    }
+    
+    .category1 {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+}

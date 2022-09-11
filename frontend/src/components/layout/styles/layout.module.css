@@ -1,0 +1,372 @@
+.layout {
+    width:  100vw;
+    position: relative;
+}
+
+.navWrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: rgb(255,199,121);
+    background: linear-gradient(90deg, rgba(255,199,121,1) 0%, rgba(255,199,121,1) 0%, rgba(255,166,43,1) 35%);
+    margin: 0 auto;
+    border-bottom: 1px solid #fdc26e;
+}
+
+.nav {
+    width: 104.5rem;
+    display: flex;
+    flex-direction: row-reverse;
+    color: #fff;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 7.5rem;
+}
+
+.navLinks {
+    display: flex;
+    list-style: none;
+    flex-direction: row-reverse;
+    margin-left: 0;
+    padding-left: 0;
+    margin-right: auto;
+}
+
+.navLink {
+    display: flex;
+    font-size: 1.8rem;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+
+}
+
+.searchForm {
+    padding: 0;
+    margin: 0;
+}
+
+.search {
+    position: relative;
+    width: 35rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4rem;
+ }
+
+.navLink:hover {
+    color: #e7e7e7;
+}
+
+.navLinkText1 {
+    margin-right: 7px;
+    margin-left: 2.7rem;
+}
+
+.navLinkText2 {
+    position: relative;
+    margin-right: 2px;
+}
+
+.navLinkText2::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 5rem;
+    background: #fdc26e;
+    position: absolute;
+    left: 13.7rem;
+    top: -1rem;
+}
+
+
+.navLink2 {
+    margin-right: 2rem ;
+}
+
+
+.navLinkIcon1 {
+    width: 2.4rem;
+    margin-top: 1rem;
+
+}
+
+.navLinkIcon2 {
+    margin-top: 1.2rem;
+    width: 2.7rem;
+}
+
+
+
+.searchBar {
+   width: 100%;
+   height: 4.5rem;
+   outline: none;
+   border: none;
+   border-radius: 5rem;
+   position: absolute;
+   text-align: right;
+   padding-right: 4.8rem;
+   font-family: Cairo;
+   font-weight: 400;
+   font-size: 1.6rem;
+   padding-bottom: 0.5rem;
+   color: #a3a3a3;
+
+}
+
+.searchBar::placeholder {
+   color: #a3a3a3;
+    
+}
+
+.searchIcon {
+    position: absolute;
+    right: 1.7rem;
+    margin-top: 40px;
+    height: 2rem;
+    width: 2rem;
+    display: block;
+
+}
+
+
+.logo {
+    cursor: pointer;
+    width: 8rem;
+    margin-left: 0;
+    margin-top: 0;
+    margin-right: -2rem;
+}
+
+
+.categoryBar {
+    height: 4rem;
+    background: #fff;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid #ddd;
+
+
+    
+}
+
+
+.categoryList {
+    list-style: none;
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 1.4rem;
+    font-weight: 700;
+    width: 104.5rem;
+    justify-content: space-between;
+    padding-left: 0;
+    
+}
+
+.categoryBarLink {
+    border-left: 1px solid #ddd;
+    padding-left: 3rem;
+    cursor: pointer;
+    transition: color 0.3s;
+    color: #a3a3a3;
+
+}
+
+.categoryBarLink:hover {
+    color: rgb(187, 186, 186);
+}
+
+
+.categoryList li:last-child p{
+    border: none;
+    padding-left: 0;
+}
+
+.allCategories {
+    position: relative;
+}
+
+.allCategories::after  {
+    content: "";
+    display: block;
+    clip-path: polygon(54% 60%, 0 0, 100% 0);
+    background: #fdc26e;
+    position: absolute;
+    height: 1rem;
+    width: 1rem;
+    top: 1.2rem;
+    left: 1.5rem;
+    
+}
+
+.facebookIcon {
+    width: 2rem;
+    cursor: pointer;
+    height: 2rem;
+}
+
+.footer {
+    width: 100vw;
+    height: 5rem;
+    border-top: 2px dashed rgb(255,166,43);
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    position: absolute;
+    background: rgb(255, 255, 255);
+    border: 1px solid #ccc;
+    right: 31.7rem;
+    bottom: -23rem;
+    border-radius: 2px;
+    z-index: 3;
+    padding: 1rem 2rem 1rem 1rem;
+    flex-direction: row-reverse;
+    display: flex;
+}
+
+.modalLinkSet {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    margin-left: 5rem;
+    position: relative;
+    color: #a3a3a3;
+    font-size: 1.4rem;
+}
+
+.modalLinkSet:not(:last-child):after {
+    display: block;
+    content: "";
+    background: #ccc;
+    position: absolute;
+    width: 1px;
+    height: 93%;
+    top: 1.1rem;
+    left: -4rem;
+    opacity: 40%;
+}
+
+.modalLinkSet:nth-child(2):after {
+    height: 80%;
+}
+
+
+
+
+.modalLink {
+    margin: 2px 0;
+}
+
+.modalLink:hover {
+    filter: brightness(80%);
+}
+
+.menuIcon {
+    width: 6rem;
+    position: absolute;
+    left: 1.5rem;
+    top: 1rem;
+    display: none;
+}
+
+.menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: rgb(235, 233, 233);
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    text-align: center;
+    font-size: 1.8rem;
+    padding: 2rem 0;
+    color: #7e7e7e;
+}
+
+.menu a {
+    margin: 3px 0;
+}
+
+.menuNavLinks {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(204, 204, 204, 0.384);
+    padding-bottom: 1rem;
+}
+
+.menuNavLinks a {
+    margin-bottom: 1rem;
+}
+
+
+.menuCategoryLinks a {
+    margin-bottom: 1rem;
+}
+
+
+.menuCategoryLinks {
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    overflow: scroll;
+    padding: 2rem 0;
+    background: rgb(240, 240, 240);
+    border-bottom: 1px solid #ccc;
+    margin-top: 3rem;
+}
+
+.sidebarBackground {
+    position: fixed;    
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.178);
+    z-index: 20;
+}
+
+.closingIcon {
+    position: absolute;
+    font-size: 3rem;
+    font-weight: bold;
+    top: -4rem;
+    right: 1.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .navWrapper{
+        margin-bottom: 1rem;
+    }
+    .navLinks,
+    .categoryBar {
+        display: none;
+    }
+
+    .nav {
+        justify-content: center;
+        align-items: center;
+        padding-left: 6rem;
+    }
+
+    .menuIcon {
+        display: block;
+    }
+    
+    .searchIcon {
+        width: 15px;
+        height: 15px;
+        margin-top: 4rem;
+    }
+
+    
+}
