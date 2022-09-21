@@ -15,7 +15,9 @@ const Index = ({ cart, token, boughtItem, clearCart }) => {
     const [phoneNumber, setPhoneNumber] = useState('')
     const [province, setProvince] = useState('')
     const [address, setAddress] = useState('')
+    const [description, setDescription] = useState('')
     const [salesManCode, setSalesManCode] = useState('')
+    const[error, setError] = useState({errorMessage: '', isError: false})
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -44,6 +46,12 @@ const Index = ({ cart, token, boughtItem, clearCart }) => {
 
     const submitOrder = (e, form, token) => {
         e.preventDefault()
+        if(!form.customerName || !form.fullAddress || !form.phoneNumber || !form.province || !form.products) {
+            return setError({errorMessage: 'برجاء التأكد من اضافة البيانات الضرورية', isError: true})
+        }
+        if(form.phoneNumber.length < 11) { 
+            return setError({errorMessage: 'رقم المحمول أقل من 11 خانة', isError: true})
+         }
         axios.post('/order', form, {
             headers: {
                 Authorization: token
@@ -77,6 +85,10 @@ const Index = ({ cart, token, boughtItem, clearCart }) => {
                         <label htmlFor="address" className={styles.label} >العنوان</label>
                     </div>
                     <div className={styles.inputArea} >
+                        <input type="text" value={description} onChange={(e) => { setDescription(() => e.target.value) } } className={styles.inputField} id="description" />
+                        <label htmlFor="description" className={styles.label} >معلومات اضافية - مقاس - حجم (اختياري)</label>
+                    </div>
+                    <div className={styles.inputArea} >
                         <input type="text" value={salesManCode} onChange={(e) => { setSalesManCode(() => e.target.value) } } className={styles.inputField} id="salesmanCode" />
                         <label htmlFor="salesmanCode" className={styles.label} >كود المسوق (اختياري)</label>
                     </div>
@@ -85,18 +97,20 @@ const Index = ({ cart, token, boughtItem, clearCart }) => {
                     fullAddress: address,
                     phoneNumber,
                     province,
+                    description,
                     products: products.map(el => {
                         return {
                             productId: el.productId,
                             productName: el.productName,
                             productQuantity: el.productQuantity,
                             productPrice: el.productPrice,
-                            productPicture: el.productPicture,
+                            productPicture: el.productPicture
                         }
                     }),
                     salesmanCode: salesManCode
 
                 },token )} className={styles.cta} ><span><img src={arrow} className={styles.ctaArrow}  /></span>ارسال الطلب</a>
+                {error.isError ? <p style={{color: 'red', fontSize: '1.7rem'}} >{error.errorMessage}</p> : ''}
                 </form>
             </div>
             <div className={styles.purchaseInfoSection}>
@@ -117,9 +131,11 @@ const mapStateToProps = state => {
     return {
         cart: state.cart,
         token: state.userAuth.token,
-        boughtItem: state.boughtItem
+        boughtItem: state.boughtItem,
     }
 }
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)
 

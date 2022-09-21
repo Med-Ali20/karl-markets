@@ -5,9 +5,12 @@ import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import imgProcessor from '../../utils/imgProcessor'
+import { Spinner } from '../../utils/Spinner'
+
 
 const Index = ( { token } ) => {
     const [orders, setOrders] = useState([])
+    const [loading, setLoading] = useState(true)
     const navigate = useNavigate()
     
     useEffect(() => {
@@ -18,8 +21,8 @@ const Index = ( { token } ) => {
         })
         .then(res => {
             setOrders(() => res.data)
-
-        })
+            setLoading(false)
+        })  
 
     },[])
 
@@ -77,7 +80,10 @@ const Index = ( { token } ) => {
     
     return (
         <div className={styles.userDashboard} >
-             {orders.length !== 0? ordersList : <h2 style={{opacity: '0.7', textAlign: 'center'}} > لا توجد طلبات للعرض </h2>}
+             { loading ? <Spinner /> : 
+             <>
+                {orders.length !== 0? ordersList : <h2 style={{opacity: '0.7', textAlign: 'center'}} > لا توجد طلبات للعرض </h2>}
+             </> }
         </div>
     )
 }

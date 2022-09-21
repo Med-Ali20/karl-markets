@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 export default function categories() {
     return (
         <section className={styles.categories} >
-            <Link to="categories/اكسسوارات موبايل" >
+            <Link to="categories/ملابس" >
                 <div className={`${styles.category} ${styles.category1}`}>
-                    <h1 className={`${styles.categoryName} ${styles.categoryName1}`} > اكسسوارات الموبايل </h1>
+                    <h1 className={`${styles.categoryName} ${styles.categoryName1}`} > ملابس</h1>
                 </div>
             </Link>
             <Link to="categories/شنط و محافظ" >
@@ -35,9 +35,9 @@ export default function categories() {
                     <h1 className={`${styles.categoryName} ${styles.categoryName6}`} > مفروشات </h1>
                 </div>
             </Link>
-            <Link to="categories/Gaming" >
+            <Link to="categories/اكسسوارات موبايل" >
                 <div className={`${styles.category} ${styles.category7}`}>
-                    <h1 className={`${styles.categoryName} ${styles.categoryName7}`} >Gaming</h1>
+                    <h1 className={`${styles.categoryName} ${styles.categoryName7}`} >اكسسوارات موبايل</h1>
                 </div>
             </Link>
             <Link to="categories/مستلزمات كمبيوتر" >

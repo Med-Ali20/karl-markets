@@ -1,5 +1,4 @@
 import React from 'react'
-import productImage from '../../assets/images/product-image.jpg'
 import arrow from '../../assets/icons/arrow.png'
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
@@ -9,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 const Index = ( { cart, incrementQuantity, decrementQuantity } ) => {
     const [products, setProducts] = useState([])
-
+    
     useEffect(() => {
         setProducts(() => cart.products)
     }, [cart.products])
@@ -47,7 +46,7 @@ const Index = ( { cart, incrementQuantity, decrementQuantity } ) => {
                 </div>
             </div>
             <div className={styles.totalPaid} ><h2 className={styles.totalPaidText} >:اجمالي المدفوعات</h2> <h2 className={styles.totalPaidPrice}> <span>ج</span> { products.length === 0? 0:products.map(el => el.productPrice* el.productQuantity).reduce(reducer) } </h2></div>
-            {products.length !== 0? <Link to="/shipping-info" passHref ><a className={styles.cta} ><span><img src={arrow} className={styles.ctaArrow} /></span>اتمام الشراء</a></Link>:<></>}
+            {products.length !== 0? <Link to="/shipping-info" className={styles.cta}><span><img src={arrow} className={styles.ctaArrow} /></span>اتمام الشراء</Link>:<></>}
         </div>
     )
 }

@@ -59,6 +59,10 @@
     color: #e7e7e7;
 }
 
+.navLink0 {
+    margin-left: 3.5rem;
+}
+
 .navLinkText1 {
     margin-right: 7px;
     margin-left: 2.7rem;
@@ -69,6 +73,10 @@
     margin-right: 2px;
 }
 
+.navLinkText0 {
+    position: relative;
+}
+
 .navLinkText2::after {
     content: "";
     display: block;
@@ -77,6 +85,17 @@
     background: #fdc26e;
     position: absolute;
     left: 13.7rem;
+    top: -1rem;
+}
+
+.navLinkText0::before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 5rem;
+    background: #fdc26e;
+    position: absolute;
+    left: -1.5rem;
     top: -1rem;
 }
 
@@ -224,8 +243,10 @@
     position: absolute;
     background: rgb(255, 255, 255);
     border: 1px solid #ccc;
-    right: 31.7rem;
-    bottom: -23rem;
+    /* right: 19%;
+    top: 100%; */
+    margin-top: 27rem;
+    margin-left: 48rem;
     border-radius: 2px;
     z-index: 3;
     padding: 1rem 2rem 1rem 1rem;
@@ -324,6 +345,24 @@
     border-bottom: 1px solid #ccc;
     margin-top: 3rem;
 }
+
+.message {
+    width: 100vw;
+    height: 6rem;
+    background: rgb(37, 185, 8);
+    color: white;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 1rem;
+    letter-spacing: 1px;
+    transform: translateY(-100%);
+    transition: all 0.4s;
+  }
+  
 
 .sidebarBackground {
     position: fixed;    

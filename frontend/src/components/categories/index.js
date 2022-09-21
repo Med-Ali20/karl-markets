@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import styles from './styles/categories.module.css'
 import addIcon from '../../assets/icons/add.png'
 import arrow from '../../assets/icons/arrow.png'
@@ -9,26 +9,28 @@ import axios from 'axios'
 import imgProcessor from '../../utils/imgProcessor'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { connect } from 'react-redux'
+import { Spinner } from '../../utils/Spinner'
 
 
-
-const Category = ({addProduct, isAuthenticated, addProductSingle}) => {
+const Category = ({addProduct, isAuthenticated, addProductSingle, showMessage, hideMessage}) => {
 
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
     const [hasMore, setHasMore] = useState(true)
     const [skip, setSkip] = useState(0)
     const { category, search } = useParams()
+    const ref = useRef(null)
     const navigate = useNavigate()
 
     useEffect(() => {
-        window.scroll(0,400)
         setProducts([])
+        setSkip(0)
+        setHasMore(true)
         setLoading(true)
+        window.scroll({top: 150, behavior: 'smooth'})
     }, [category, search])
 
     const getProducts = () => {
-        
         if(window.location.href.includes('search')) {
             axios.get(`/product/search/${search}?limit=9&skip=${skip}`)
             .then( ({ data }) => {
@@ -59,7 +61,9 @@ const Category = ({addProduct, isAuthenticated, addProductSingle}) => {
         addProduct({id, price, name, quantity, picture})
         
         if(isAuthenticated){
-            return navigate('/purchase-info')
+            showMessage()
+            setTimeout(hideMessage, 3000)
+            return
         }
 
         navigate('/sign-up')
@@ -97,18 +101,20 @@ const Category = ({addProduct, isAuthenticated, addProductSingle}) => {
     })
     
     return (
-        <div className={ styles.categorySection } >
-            <h1 className={styles.categoryName} > {category || search} </h1>
-            <InfiniteScroll 
-            className={styles.products}
-            dataLength={products.length}    
+        <InfiniteScroll className={ styles.categorySection }
+            dataLength={products.length}
+            hasMore={hasMore}   
             next={getProducts}
-            hasMore={hasMore}>
-                {products.length === 0? <h1 style={{textAlign: 'center'}} > {loading ? 'Loading ...' : 'لا توجد منتجات للعرض'} </h1>: productArray }
-                
-            </InfiniteScroll>
+            scrollThreshold={0.4}
+            loader={<h3> <Spinner /> </h3>} >
+            <h1 className={styles.categoryName}> {category || search} </h1>
+            
+            <div 
+            className={styles.products}>
+                {products.length === 0? <h1 style={{textAlign: 'center'}} > {loading ? "": 'لا توجد منتجات للعرض'} </h1>: productArray }  
+            </div>
 
-        </div>
+        </InfiniteScroll>
     )
 }
 
@@ -123,7 +129,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         addProduct: (payload) => dispatch({type: 'ADD_PRODUCT', payload}) ,
-        addProductSingle: (payload) => dispatch({type: 'SUBMIT_ITEM', payload}) 
+        addProductSingle: (payload) => dispatch({type: 'SUBMIT_ITEM', payload}),
+        showMessage: () => dispatch({type: 'SHOW_MESSAGE',payload: 'تمت اضافة المنتج الى السلة'}),
+        hideMessage: () => dispatch({type: 'HIDE_MESSAGE'}),
     }
 }
 

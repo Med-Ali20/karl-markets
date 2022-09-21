@@ -7,9 +7,10 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import imgProcessor from '../../utils/imgProcessor'
 import { connect } from 'react-redux'
+import { Spinner } from '../../utils/Spinner'
 
 
-const Product = ({ addProduct, isAuthenticated, addProductSingle }) => {
+const Product = ({ addProduct, isAuthenticated, addProductSingle, isAdminAuth, token }) => {
     const [mainImageSrc, setMainImageSrc] = useState('')
     const [product, setProduct] = useState({})
     const navigate = useNavigate()
@@ -42,19 +43,36 @@ const Product = ({ addProduct, isAuthenticated, addProductSingle }) => {
 
     }
 
+    const deleteProduct = (e, id ) => {
+        e.preventDefault();
+        axios.delete(`/product/${id}`, {
+            headers: {
+                Authorization: token
+            }
+        }, {
+            id
+        }).then(res => {
+            navigate('/', {replace: true})
+        })
+    }   
+
     return (
+        <>{product._id ? 
         <div className={styles.productSection} >
-           {product._id ? <>
                 <div className={styles.productDetails} >
                     <h1 className={styles.productName} > {product.productName} </h1>
                     <p className={styles.productDescription} > {product.productDescription} </p>
                     <div className={styles.cta} >
-                        <a href="" className={styles.addToCart}  onClick={(e)=>{addToCart(e,product._id,product.productPrice, product.productName, 1, product.productPicture)}} > <span> <img src={addIcon} className={styles.addIcon}  /> </span>  اضف الى السلة </a>
-                        <a href="" className={styles.buy} onClick={(e)=>{buyProduct(e, product._id, product.productPrice, product.productName, 1, product.productPicture)}} > <span> <img src={arrow}  className={styles.arrow} /> </span>  شراء  </a>
+                        { !isAdminAuth ?
+                        <>
+                            <a href="" className={styles.addToCart}  onClick={(e)=>{addToCart(e,product._id,product.productPrice, product.productName, 1, product.productPicture)}} > <span> <img src={addIcon} className={styles.addIcon}  /> </span>  اضف الى السلة </a>
+                            <a href="" className={styles.buy} onClick={(e)=>{buyProduct(e, product._id, product.productPrice, product.productName, 1, product.productPicture)}} > <span> <img src={arrow}  className={styles.arrow} /> </span>  شراء  </a>
+                        </>
+                        :<a href="" className={styles.delete} onClick={(e) =>{deleteProduct(e, product._id)}} > مسح المنتج  </a>}
                     </div>
                 </div>
                 <div className={styles.showcase} >
-                    <div className={styles.showcaseMain} > <img src={`data:image/jpeg;base64, ${imgProcessor(mainImageSrc)}`} /> </div>
+                    <div className={styles.showcaseMain} > <img src={`data:image/jpeg;base64, ${imgProcessor(mainImageSrc)}`} className={styles.mainImage} /> </div>
                     <div className={styles.subImages} >
                         <div onClick={() => {setMainImageSrc(product.extraImage1.data)}}  tabIndex="-1"> <img src={`data:image/jpeg;base64, ${imgProcessor(product.extraImage1.data)}`}  className={styles.subImage} /> </div>
                         <div onClick={() => {setMainImageSrc(product.extraImage2.data)}}  tabIndex="-1"> <img src={`data:image/jpeg;base64, ${imgProcessor(product.extraImage2.data)}`}  className={styles.subImage} /> </div>
@@ -62,9 +80,7 @@ const Product = ({ addProduct, isAuthenticated, addProductSingle }) => {
                         <div onClick={() => {setMainImageSrc(product.extraImage4.data)}}  tabIndex="-1"> <img src={`data:image/jpeg;base64, ${imgProcessor(product.extraImage4.data)}`}  className={styles.subImage} /> </div>
                     </div>
                 </div> 
-            </> : ''}
-          
-        </div> 
+        </div> : <Spinner /> }</>
     )
 }
 
@@ -72,7 +88,9 @@ const mapStateToProps = state => {
     return {
         product: state.boughtItem,
         cart: state.cart,
-        isAuthenticated: state.userAuth.isAuthenticated
+        isAuthenticated: state.userAuth.isAuthenticated,
+        isAdminAuth: state.adminAuth.isAuthenticated,
+        token: state.adminAuth.token
     }
 }
 

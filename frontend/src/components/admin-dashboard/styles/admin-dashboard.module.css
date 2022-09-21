@@ -79,10 +79,14 @@
     border-radius: 1.5rem;
     position: relative;
     box-shadow: 2px 2px 8px rgba(0,0,0,0.2) ;
-    display: inline-block;
     margin: 5rem 0;
     transition: filter 0.3s;
     box-sizing: border-box;
+    border: none;
+    display: block;
+    width: 20rem;
+    font-family: 'Cairo';
+    cursor: pointer;
 }
 
 .cta:hover {

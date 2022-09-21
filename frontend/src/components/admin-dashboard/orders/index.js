@@ -55,6 +55,7 @@ const Index = ( { token, rank } ) => {
                         <h3>العنوان: {el.fullAddress}</h3>
                         <h3>رقم الموبايل: {el.phoneNumber}</h3>
                         <h3>المحافظة: {el.province}</h3>
+                       { el.description?  <h3>معلومات اضافية: {el.description}</h3> : ''}
                     </div>
                     <div className={styles.tableHeader} >
                         <h2>المنتج</h2>

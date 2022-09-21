@@ -3,6 +3,7 @@
     max-width: 104.5rem;
     padding: 0;
     margin: 0 auto;
+    
    
 }
 
@@ -12,6 +13,8 @@
     text-align: right;
     margin-top: 1rem;
     font-size: 3rem;
+    height: 5rem;
+
 }
 
 .categoryName:after {

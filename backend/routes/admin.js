@@ -50,11 +50,11 @@ router.post('/dashboard/orders', auth, async (req, res) => {
 
 router.post('/product', upload.array('photos'), auth, async (req, res) => {
     try{
-        const productPicture = await sharp(req.files[0].buffer).resize({width: 500, height: 500}).jpeg().toBuffer()
-        const extraImage1 = await sharp(req.files[1].buffer).resize({width: 500, height: 500}).jpeg().toBuffer()
-        const extraImage2 = await sharp(req.files[2].buffer).resize({width: 500, height: 500}).jpeg().toBuffer()
-        const extraImage3 = await sharp(req.files[3].buffer).resize({width: 500, height: 500}).jpeg().toBuffer()
-        const extraImage4 = await sharp(req.files[4].buffer).resize({width: 500, height: 500}).jpeg().toBuffer()
+        const productPicture = await sharp(req.files[0].buffer).resize({width: 350, height: 350}).jpeg().toBuffer()
+        const extraImage1 = await sharp(req.files[1].buffer).resize({width: 350, height: 350}).jpeg().toBuffer()
+        const extraImage2 = await sharp(req.files[2].buffer).resize({width: 350, height: 350}).jpeg().toBuffer()
+        const extraImage3 = await sharp(req.files[3].buffer).resize({width: 350, height: 350}).jpeg().toBuffer()
+        const extraImage4 = await sharp(req.files[4].buffer).resize({width: 350, height: 350}).jpeg().toBuffer()
 
         const product = new Product(req.body)
         product.productPicture = productPicture
@@ -66,6 +66,17 @@ router.post('/product', upload.array('photos'), auth, async (req, res) => {
         res.status(201).json(product)
     }
     catch(e) {
+        console.log(e)
+        res.status(400)
+    }
+})
+
+router.delete('/product/:id', auth, async (req, res) => {
+    try {
+        await Product.findByIdAndDelete(req.params.id)
+        res.status(200).json({message: 'Deleted Successfully'})
+        
+    } catch (error) {
         res.status(400)
     }
 })

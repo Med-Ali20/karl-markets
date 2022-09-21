@@ -22,9 +22,13 @@ const Index = ( { setUserAuthentication, cart, boughtItem } ) => {
     const submitNewAccount = (e, userName, email, password) => {
         e.preventDefault()
         const requestBody = {username: userName, email, password}
+
         if(password.length < 7) {
             setPasswordError(true)
         }
+
+        if(email.length === 0 || userName.length === 0) return
+
         axios.post(`/users`,requestBody).then(res => {
             const payload = {
                 username: res.data.newUser.userName,

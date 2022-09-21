@@ -58,7 +58,7 @@ const Index = ({ setAdminAuthentication }) => {
                     </div>
                     <label htmlFor="password" className={styles.label} >كلمة السر</label>     
                 </div>
-                <a onClick={e => submitAccount(e, name, password)} className={styles.cta} ><span><img src={arrow}  className={styles.ctaArrow}  /></span>تسجيل الدخول</a>
+                <a onClick={e => submitAccount(e, name, password)} className={styles.cta} >تسجيل الدخول</a>
                 {error ? <p className={styles.error} style={{color: 'red', fontSize: '1.6rem'}} >خطأ في تسجيل الدخول</p> : ''}
             </form>
             

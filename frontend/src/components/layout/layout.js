@@ -3,7 +3,7 @@ import { useState } from 'react'
 import searchIcon from '../../assets/icons/search.png'
 import facebookIcon from '../../assets/icons/facebook.png'
 import userIcon from '../../assets/icons/user-b.png'
-import shoppingCartIcon from '../../assets/icons/sign-up.png'
+import shoppingCartImage from '../../assets/icons/shopping-cart-b.png'
 import logo from '../../assets/icons/logo-1.png'
 import styles from './styles/layout.module.css'
 import menu from '../../assets/icons/menu-1.png'
@@ -13,7 +13,7 @@ import signUpIcon from '../../assets/icons/sign-up.png'
 import logout from '../../assets/icons/logout.png'
 
 
-const Layout = ({children, isAuthenticated, isAdminAuth}) => {
+const Layout = ({children, isAuthenticated, isAdminAuth, showMessage, messageText}) => {
     
     const [modalStyle, setModalStyle] = useState({display: 'none'})
     const [menuBackgroundStyle, setMenuBackgroundStyle] = useState({visibility: 'hidden', opacity:'0', transition: 'all 0.3s'})
@@ -24,6 +24,7 @@ const Layout = ({children, isAuthenticated, isAdminAuth}) => {
     const showMenu = () => {
         setMenuStyle(() => {return {transform: 'translateX(0%)',transition:'transform 0.3s'}})
         setMenuBackgroundStyle(() => {return {visibility: 'visible', opacity:'1', transition: 'all 0.3s'}})
+        console.log(showMessage)
     }
 
     const hideMenu = () => {
@@ -31,7 +32,7 @@ const Layout = ({children, isAuthenticated, isAdminAuth}) => {
         setMenuBackgroundStyle(() => {return {visibility: 'hidden', opacity:'0', transition: 'all 0.3s'}})
     }
 
-    const categoryBarLinks = ['أدوات منزلية','ملابس','اكسسوارات موبايل','عناية شخصية','أحذية','hi','الساعات الذكيه']
+    const categoryBarLinks = ['أدوات منزلية','ملابس','اكسسوارات موبايل','عناية شخصية','أحذية','ساعات','الساعات الذكيه']
     const modalLinksSet1 = ['أدوات منزلية','ملابس','اكسسوارات موبايل','عناية شخصية','أحذية','ساعات','الساعات الذكيه','مستلزمات كمبيوتر']
     const modalLinksSet2 = ['عروض حصرية','أجهزة إلكترونية صغيرة','العاب','شنط و محافظ','مستحضرات تجميل','مفروشات','مستلزمات أطفال','مستلزمات طبية']
     const modalLinksSet3 = ['مستلزمات الحيوانات الأليفة','اكسسوارات سيارات','مكن حلاقة','معدات صيانه','مراوح و مكييفات','Gaming','مستلزمات طبية']
@@ -58,8 +59,16 @@ const Layout = ({children, isAuthenticated, isAdminAuth}) => {
     if(!isAdminAuth) {
         navLinks = (
             <>
-                <Link to={!isAuthenticated ? '/login' : '/user-dashboard'}>
-                            <li className={`${styles.navLink} ${styles.navLink1}`} style={!isAuthenticated?{}: {marginLeft:'-2.5rem'}}>
+                <Link to='/purchase-info'>
+                            <li className={`${styles.navLink} ${styles.navLink0}`}>
+                                <p className={`${styles.navLinkText} ${styles.navLinkText0}`} >{'السلة'}</p>
+                                <div>
+                                    <img src={shoppingCartImage} alt="login" className={`${styles.navLinkIcon} ${styles.navLinkIcon1}`} />
+                                </div>
+                            </li>
+                        </Link>
+                <Link to={!isAuthenticated ? '/login' : '/user-dashboard'} >
+                            <li className={`${styles.navLink} ${styles.navLink1}`} style={!isAuthenticated?{}: {marginLeft:'-2rem'}}>
                                 <p className={`${styles.navLinkText} ${styles.navLinkText1}`} >{!isAuthenticated? 'تسجيل الدخول' : 'حسابي'}</p>
                                 <div>
                                     <img src={!isAuthenticated ? userIcon: signUpIcon} alt="login" className={`${styles.navLinkIcon} ${styles.navLinkIcon1}`} />
@@ -96,9 +105,12 @@ const Layout = ({children, isAuthenticated, isAdminAuth}) => {
             </Link>
         </>
     )
+    
+    const style = {transform: `translateY(${showMessage ? 0 : -100}%)`}
 
     return (
         <div className={styles.layout}>
+            <span className={styles.message} style={style} >{ messageText }</span>
             <div className={styles.navWrapper} >
                 <div className={styles.nav} >
                     <Link to="/"><div > <img src={logo} className={styles.logo} /> </div></Link>
@@ -165,7 +177,9 @@ const Layout = ({children, isAuthenticated, isAdminAuth}) => {
 const mapStateToProps = state => {
     return {
         isAuthenticated: state.userAuth.isAuthenticated,
-        isAdminAuth: state.adminAuth.isAuthenticated
+        isAdminAuth: state.adminAuth.isAuthenticated,
+        showMessage: state.message.showMessage,
+        messageText: state.message.messageText
     }
 }
 

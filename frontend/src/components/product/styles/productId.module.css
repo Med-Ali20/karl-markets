@@ -73,8 +73,19 @@
     transition: all 0.3s;
 }
 
+.delete {
+    background: #fc5353;
+    font-size: 1.4rem;
+    padding: 1rem 4rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    color: #fff;
+    transition: all 0.3s;
+}
+
 .buy:hover,
-.addToCart:hover {
+.addToCart:hover,
+.delete:hover {
     filter: brightness(110%);
 }
 
@@ -95,6 +106,10 @@
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     overflow: hidden;
+}
+
+.mainImage {
+    width: 50rem;
 }
 
 .subImage {
@@ -118,6 +133,7 @@
 .subImage:last-child {
     margin: 0;
 }
+
 
 
 @media only screen and (max-width: 600px) {
