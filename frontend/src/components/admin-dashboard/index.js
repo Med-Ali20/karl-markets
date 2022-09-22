@@ -5,8 +5,11 @@ import { useState, useRef } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { Spinner } from '../../utils/Spinner'
 
 const Index = ({ token, showMessage, hideMessage }) => {
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(false)
     const [productName, setProductName] = useState('')
     const [category, setCategory] = useState('')
     const [price, setPrice] = useState('')
@@ -35,11 +38,14 @@ const Index = ({ token, showMessage, hideMessage }) => {
 
     const shipProduct = (e, form, token) => {
         e.preventDefault()
+        setLoading(true)
+        setError(false)
         axios.post('/product',form, {
             headers: {
                 Authorization: token
             }
         }).then(res => {
+            setLoading(false)
             setProductName('');
             setCategory('');
             setPrice('');
@@ -52,12 +58,16 @@ const Index = ({ token, showMessage, hideMessage }) => {
             image4.current.value=''
             showMessage()
             setTimeout(hideMessage, 3000)
+        }).catch(e => {
+            setError(true)
+            setLoading(false)
         })
     }
 
 
     return (
         <div className={styles.adminDashboard} >
+            { loading ? <div className={styles.loadingScreen}> <Spinner /> </div>: ''}
             <div className={styles.formSection} >
                 <h1 className={styles.formHeader}>اضافة منتج</h1>
                 <form name="photos" encType="multipart/form-data" onSubmit={(e) => shipProduct(e, FD, token)}  >
@@ -114,7 +124,7 @@ const Index = ({ token, showMessage, hideMessage }) => {
                     
                     <button type="submit" className={styles.cta} > اضف المنتج </button>
                     <Link to="/orders" className={styles.cta} style={{background: '#1fc739'}} >عرض الطلبات</Link>
-
+                    { error ? <p style={{fontSize: '2rem', color: 'red'}} >خطأ في اضافة المنتج</p> : ''}
                 </form>
                 
             </div>

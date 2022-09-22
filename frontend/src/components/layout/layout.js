@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
 import searchIcon from '../../assets/icons/search.png'
-import facebookIcon from '../../assets/icons/facebook.png'
 import userIcon from '../../assets/icons/user-b.png'
 import shoppingCartImage from '../../assets/icons/shopping-cart-b.png'
 import logo from '../../assets/icons/logo-1.png'
@@ -13,7 +12,7 @@ import signUpIcon from '../../assets/icons/sign-up.png'
 import logout from '../../assets/icons/logout.png'
 
 
-const Layout = ({children, isAuthenticated, isAdminAuth, showMessage, messageText}) => {
+const Layout = ({children, isAuthenticated, isAdminAuth, showMessage, messageText, isLoading}) => {
     
     const [modalStyle, setModalStyle] = useState({display: 'none'})
     const [menuBackgroundStyle, setMenuBackgroundStyle] = useState({visibility: 'hidden', opacity:'0', transition: 'all 0.3s'})
@@ -35,13 +34,13 @@ const Layout = ({children, isAuthenticated, isAdminAuth, showMessage, messageTex
     const categoryBarLinks = ['أدوات منزلية','ملابس','اكسسوارات موبايل','عناية شخصية','أحذية','ساعات','الساعات الذكيه']
     const modalLinksSet1 = ['أدوات منزلية','ملابس','اكسسوارات موبايل','عناية شخصية','أحذية','ساعات','الساعات الذكيه','مستلزمات كمبيوتر']
     const modalLinksSet2 = ['عروض حصرية','أجهزة إلكترونية صغيرة','العاب','شنط و محافظ','مستحضرات تجميل','مفروشات','مستلزمات أطفال','مستلزمات طبية']
-    const modalLinksSet3 = ['مستلزمات الحيوانات الأليفة','اكسسوارات سيارات','مكن حلاقة','معدات صيانه','مراوح و مكييفات','Gaming','مستلزمات طبية']
+    const modalLinksSet3 = ['مستلزمات الحيوانات الأليفة','اكسسوارات سيارات','مكن حلاقة','معدات صيانه','مراوح و مكييفات','Gaming']
     const menuLinksSet = [...modalLinksSet1,...modalLinksSet2,...modalLinksSet3]
-    const categoryList = categoryBarLinks.map(el => { return <Link to={`/categories/${el}`} ><p className={styles.categoryBarLink} >  {el} </p></Link> })
-    const modalList1 = modalLinksSet1.map(el => {return <Link to={`/categories/${el}`}  passHref><a className={styles.modalLink} >{el}</a></Link>})
-    const modalList2 = modalLinksSet2.map(el => {return <Link to={`/categories/${el}`}  passHref><a className={styles.modalLink} >{el}</a></Link>})
-    const modalList3 = modalLinksSet3.map(el => {return <Link to={`/categories/${el}`}  passHref><a className={styles.modalLink} >{el}</a></Link>})
-    const menuList = menuLinksSet.map(el => <Link to={`/categories/${el}`} passHref><a className={styles.modalLink} >{el}</a></Link>)
+    const categoryList = categoryBarLinks.map(el => { return <Link to={`/categories/${el}`} key={el}   style={{pointerEvents: isLoading ? 'none' : ''}} ><p className={styles.categoryBarLink} >  {el} </p></Link> })
+    const modalList1 = modalLinksSet1.map(el => {return <Link to={`/categories/${el}`} key={el}   style={{pointerEvents: isLoading ? 'none' : ''}} className={styles.modalLink} >{el}</Link>})
+    const modalList2 = modalLinksSet2.map(el => {return <Link to={`/categories/${el}`} key={el}   style={{pointerEvents: isLoading ? 'none' : ''}} className={styles.modalLink} >{el}</Link>})
+    const modalList3 = modalLinksSet3.map(el => {return <Link to={`/categories/${el}`} key={el}   style={{pointerEvents: isLoading ? 'none' : ''}} className={styles.modalLink} >{el}</Link>})
+    const menuList = menuLinksSet.map(el => <Link to={`/categories/${el}`} key={el}  onClick={hideMenu} style={{pointerEvents: isLoading ? 'none' : ''}} className={styles.modalLink} >{el}</Link>)
 
     const searchProduct = (e) => {
         e.preventDefault();
@@ -77,7 +76,7 @@ const Layout = ({children, isAuthenticated, isAdminAuth, showMessage, messageTex
                         </Link>
                         <Link to={!isAuthenticated? '/sign-up' : ''}>
                             <li className={`${styles.navLink} ${styles.navLink2}`} >
-                                <p className={`${styles.navLinkText} ${styles.navLinkText2}`} onClick={isAuthenticated? getUserLoggedOut : ''} > {!isAuthenticated? 'انشاء حساب': 'تسجيل الخروج'} </p>
+                                <p className={`${styles.navLinkText} ${styles.navLinkText2}`} onClick={isAuthenticated? getUserLoggedOut : null} > {!isAuthenticated? 'انشاء حساب': 'تسجيل الخروج'} </p>
                                 <div>
                                     <img src={!isAuthenticated? signUpIcon : logout} alt="cart" className={`${styles.navLinkIcon} ${styles.navLinkIcon2}`} />
                                 </div>
@@ -107,6 +106,33 @@ const Layout = ({children, isAuthenticated, isAdminAuth, showMessage, messageTex
     )
     
     const style = {transform: `translateY(${showMessage ? 0 : -100}%)`}
+
+    let menuLinks 
+    if(!isAdminAuth) {
+        if(!isAuthenticated) {
+             menuLinks = (
+                <>
+                    <Link to='/login' onClick={hideMenu}  >تسجيل الدخول </Link>
+                    <Link to='/sign-up' onClick={hideMenu}  > انشاء حساب </Link>
+                    <Link to='/purchase-info' onClick={hideMenu}  > السلة </Link>
+                </>
+                
+            )
+        } else {
+            menuLinks = ( <>
+                    <Link to='/user-dashboard' onClick={hideMenu}  >حسابي </Link>
+                    <Link to='/' onClick={() => {getUserLoggedOut(); hideMenu() }}> نسجيل الخروج </Link>
+                    <Link to='/purchase-info' onClick={hideMenu}  > السلة </Link>
+                </>
+                )
+        }
+    } else {
+            menuLinks = ( <>
+                <Link to='/admin-dashboard' onClick={hideMenu}  >Dashboard </Link>
+                <Link to='/' onClick={() => {getUserLoggedOut(); hideMenu() }}> نسجيل الخروج </Link>
+            </>
+            )
+    }
 
     return (
         <div className={styles.layout}>
@@ -156,14 +182,11 @@ const Layout = ({children, isAuthenticated, isAdminAuth, showMessage, messageTex
                 </div>
             </div>
             {children}
-            {/* <div className={styles.footer} >
-                <div> <img src={facebookIcon}  className={styles.facebookIcon}  /> </div>
-            </div> */}
             <div className={styles.sidebarBackground} style={menuBackgroundStyle} onClick={hideMenu} ></div>   
             <div className={styles.menu} style={menuStyle} >
                 <div className={styles.menuNavLinks} >
                     <p className={styles.closingIcon} onClick={hideMenu}>x</p>
-                    <a href="">تسجيل الدخول</a><a href="">السلة</a>
+                    {menuLinks}
                 </div>
                 <div className={styles.menuCategoryLinks} >
                     {menuList}        
@@ -179,7 +202,8 @@ const mapStateToProps = state => {
         isAuthenticated: state.userAuth.isAuthenticated,
         isAdminAuth: state.adminAuth.isAuthenticated,
         showMessage: state.message.showMessage,
-        messageText: state.message.messageText
+        messageText: state.message.messageText,
+        isLoading: state.message.isLoading
     }
 }
 

@@ -50,7 +50,7 @@ router.get('/product/id/:id', async (req, res) => {
 
 router.get('/product/all', async (req, res) => {
     try {
-        const products =  await Product.find({})
+        const products =  await Product.find({}).sort([['_id', -1]]).limit(req.query.limit || 12).skip(req.query.skip || 0)
         res.status(200).json(products)
     }
     catch(error) {

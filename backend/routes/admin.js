@@ -67,7 +67,7 @@ router.post('/product', upload.array('photos'), auth, async (req, res) => {
     }
     catch(e) {
         console.log(e)
-        res.status(400)
+        res.status(400).json({message: 'Error when adding the product'})
     }
 })
 

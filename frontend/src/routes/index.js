@@ -21,6 +21,7 @@ const AppRoutes = ({ isAdminAuth, isAuth }) => {
             <Route path="/admin-dashboard" element={isAdminAuth ? <AdminDashboard /> : <Navigate to="/" replace/>} />
             <Route path="/admin-login" element={<AdminLogin />} />
             <Route path="/orders" element={isAdminAuth ? <Orders /> : <Navigate to="/" replace/>}  />
+            <Route path="/categories/products/getAll" element={<Categories />} />
             <Route path="/categories/search/:search" element={<Categories />} />
             <Route path="/categories/:category" element={<Categories />} />
             <Route path="/login" element={<Login />} />

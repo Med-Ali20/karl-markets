@@ -61,6 +61,7 @@ const Product = ({ addProduct, isAuthenticated, addProductSingle, isAdminAuth, t
         <div className={styles.productSection} >
                 <div className={styles.productDetails} >
                     <h1 className={styles.productName} > {product.productName} </h1>
+                    <h1 className={styles.productName} style={{fontWeight: '300'}} > {product.productPrice} <span>ج</span>  </h1>
                     <p className={styles.productDescription} > {product.productDescription} </p>
                     <div className={styles.cta} >
                         { !isAdminAuth ?

@@ -3,19 +3,26 @@ import passwordIcon from '../../assets/icons/padlock.png'
 import emailIcon from '../../assets/icons/envelope.png'
 import arrow from '../../assets/icons/arrow.png'
 import styles from './styles/login.module.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const Index = ({ setUserAuthentication, cart, boughtItem }) => {
+const Index = ({ setUserAuthentication, cart, boughtItem, isAuthenticated }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false)
     const navigate = useNavigate()
+    
+    useEffect(() => {
+        if(isAuthenticated) {
+            navigate('/user-dashboard', { replace: true })
+        }
+    },[])
 
     const submitAccount = (e, email, password) => {
         e.preventDefault()
+        setError(false)
         const requestBody = {email, password}
         axios.post(`/login`,requestBody).then(res => {
             const payload = {
@@ -58,14 +65,14 @@ const Index = ({ setUserAuthentication, cart, boughtItem }) => {
                         <input type="text" id="email" className={styles.inputField}  value={email} onChange={e => setEmail(() => e.target.value)}  />
                         <div><img src={emailIcon}  className={styles.img}  /></div> 
                     </div>
-                    <label for="email" className={styles.label} >البريد الالكتروني</label>     
+                    <label htmlFor="email" className={styles.label} >البريد الالكتروني</label>     
                 </div>
                 <div className={styles.passwordField} >
                     <div className={styles.passwordInput} >
                         <input type="password" id="password" className={styles.inputField} value={password} onChange={e => setPassword(() => e.target.value)} />
                         <div><img src={passwordIcon} className={styles.img}  /></div> 
                     </div>
-                    <label for="password" className={styles.label} >كلمة السر</label>     
+                    <label htmlFor="password" className={styles.label} >كلمة السر</label>     
                 </div>
                 <a href="#" onClick={e => submitAccount(e, email, password)} className={styles.cta} ><img src={arrow}  className={styles.ctaArrow} />تسجيل الدخول</a>
                 {error ? <p className={styles.error} style={{color: 'red', fontSize: '1.6rem'}} >خطأ في تسجيل الدخول</p> : ''}
@@ -77,7 +84,8 @@ const Index = ({ setUserAuthentication, cart, boughtItem }) => {
 const mapStateToProps = state => {
     return {
         cart: state.cart,
-        boughtItem: state.boughtItem
+        boughtItem: state.boughtItem,
+        isAuthenticated: state.userAuth.isAuthenticated
     }
 }
 

@@ -6,9 +6,10 @@ import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import imgProcessor from '../../utils/imgProcessor'
+import { Spinner } from '../../utils/Spinner'
 
 
-const Index = ({ cart, token, boughtItem, clearCart }) => {
+const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage }) => {
 
     const [products, setProducts] = useState([])
     const [fullName, setFullName] = useState('')
@@ -17,6 +18,7 @@ const Index = ({ cart, token, boughtItem, clearCart }) => {
     const [address, setAddress] = useState('')
     const [description, setDescription] = useState('')
     const [salesManCode, setSalesManCode] = useState('')
+    const [loading, setLoading] = useState(false)
     const[error, setError] = useState({errorMessage: '', isError: false})
     const navigate = useNavigate()
 
@@ -46,6 +48,7 @@ const Index = ({ cart, token, boughtItem, clearCart }) => {
 
     const submitOrder = (e, form, token) => {
         e.preventDefault()
+        setLoading(true)
         if(!form.customerName || !form.fullAddress || !form.phoneNumber || !form.province || !form.products) {
             return setError({errorMessage: 'برجاء التأكد من اضافة البيانات الضرورية', isError: true})
         }
@@ -57,14 +60,18 @@ const Index = ({ cart, token, boughtItem, clearCart }) => {
                 Authorization: token
             }
         }).then( res => {
+            setLoading(false)
             clearCart()
             navigate('/user-dashboard', {replace: true})
+            showMessage()
+            setTimeout(hideMessage, 3000)
         })
     }
 
 
     return (
         <div  className={styles.shippingInfoSection} >
+            { loading ? <div className={styles.loadingScreen}> <Spinner /> </div>: ''}
             <div className={styles.formSection} >
                 <h1 className={styles.formHeader}>بيانات الشحن</h1>
                 <form action="">
@@ -123,7 +130,9 @@ const Index = ({ cart, token, boughtItem, clearCart }) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        clearCart: () => dispatch({type: 'CLEAR'})
+        clearCart: () => dispatch({type: 'CLEAR'}),
+        showMessage: () => dispatch({type: 'SHOW_MESSAGE', payload: 'تم ارسال الطلب'}),
+        hideMessage: () => dispatch({type: 'HIDE_MESSAGE'}),
     }
 }
 

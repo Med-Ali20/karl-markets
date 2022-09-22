@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import styles from './styles/categories.module.css'
 import addIcon from '../../assets/icons/add.png'
 import arrow from '../../assets/icons/arrow.png'
@@ -12,14 +12,13 @@ import { connect } from 'react-redux'
 import { Spinner } from '../../utils/Spinner'
 
 
-const Category = ({addProduct, isAuthenticated, addProductSingle, showMessage, hideMessage}) => {
+const Category = ({addProduct, isAuthenticated, addProductSingle, showMessage, hideMessage, setLoader, disableLoader}) => {
 
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
     const [hasMore, setHasMore] = useState(true)
     const [skip, setSkip] = useState(0)
     const { category, search } = useParams()
-    const ref = useRef(null)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -31,27 +30,45 @@ const Category = ({addProduct, isAuthenticated, addProductSingle, showMessage, h
     }, [category, search])
 
     const getProducts = () => {
+        setLoader()
         if(window.location.href.includes('search')) {
             axios.get(`/product/search/${search}?limit=9&skip=${skip}`)
             .then( ({ data }) => {
                 if(data.length === 0) {
                     setHasMore(false)
+                    disableLoader()
                     return setLoading(false)
                 }
                 setProducts(products.concat(data)) 
                 setSkip(skip + 9)
+                disableLoader()
             })
             
-        } else {
+        } else if(window.location.href.includes('getAll')) {
+            axios.get(`/product/all?limit=9&skip=${skip}`)
+            .then( ({ data }) => {
+                if(data.length === 0) {
+                    setHasMore(false)
+                    disableLoader()
+                    return setLoading(false)
+                }
+                setProducts(products.concat(data)) 
+                setSkip(skip + 9)
+                disableLoader()
+            })
+        }
+         else {
 
             axios.get(`/product/category/${category}?limit=9&skip=${skip}`)
             .then( ({ data }) => {
                 if(data.length === 0) {
                     setHasMore(false)
+                    disableLoader()
                     return setLoading(false)
                 }
                 setProducts(products.concat(data))
                 setSkip(skip + 9)
+                disableLoader()
             })
         }
     }
@@ -105,9 +122,8 @@ const Category = ({addProduct, isAuthenticated, addProductSingle, showMessage, h
             dataLength={products.length}
             hasMore={hasMore}   
             next={getProducts}
-            scrollThreshold={0.4}
             loader={<h3> <Spinner /> </h3>} >
-            <h1 className={styles.categoryName}> {category || search} </h1>
+            <h1 className={styles.categoryName}> {category || search || 'عرض المنتجات'} </h1>
             
             <div 
             className={styles.products}>
@@ -132,6 +148,8 @@ const mapDispatchToProps = dispatch => {
         addProductSingle: (payload) => dispatch({type: 'SUBMIT_ITEM', payload}),
         showMessage: () => dispatch({type: 'SHOW_MESSAGE',payload: 'تمت اضافة المنتج الى السلة'}),
         hideMessage: () => dispatch({type: 'HIDE_MESSAGE'}),
+        setLoader: () => dispatch({type: 'SET_LOADING'}),
+        disableLoader: () => dispatch({type: 'DISABLE_LOADING'})
     }
 }
 

@@ -1,6 +1,7 @@
 .layout {
     width:  100vw;
     position: relative;
+    padding-bottom: 1rem;
 }
 
 .navWrapper {
@@ -243,9 +244,7 @@
     position: absolute;
     background: rgb(255, 255, 255);
     border: 1px solid #ccc;
-    /* right: 19%;
-    top: 100%; */
-    margin-top: 27rem;
+    margin-top: 30rem;
     margin-left: 48rem;
     border-radius: 2px;
     z-index: 3;

@@ -5,12 +5,12 @@ import emailIcon from '../../assets/icons/envelope.png'
 import arrow from '../../assets/icons/arrow.png'
 import styles from './styles/signUp.module.css'
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 
 
-const Index = ( { setUserAuthentication, cart, boughtItem } ) => {
+const Index = ( { setUserAuthentication, cart, boughtItem, isAuthenticated } ) => {
     const [userName, setUserName] = useState('')
     const [email, setEmail] = useState('')
     const [passwordError, setPasswordError] = useState(false)
@@ -18,9 +18,16 @@ const Index = ( { setUserAuthentication, cart, boughtItem } ) => {
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
 
+    useEffect(() => {
+        if(isAuthenticated) {
+            navigate('/user-dashboard', { replace: true })
+        }
+    },[])
 
     const submitNewAccount = (e, userName, email, password) => {
         e.preventDefault()
+        setEmailError(false)
+        setEmailError(false)
         const requestBody = {username: userName, email, password}
 
         if(password.length < 7) {
@@ -98,7 +105,8 @@ const Index = ( { setUserAuthentication, cart, boughtItem } ) => {
 const mapStateToProps = state => {
     return {
         cart: state.cart,
-        boughtItem: state.boughtItem
+        boughtItem: state.boughtItem,
+        isAuthenticated: state.userAuth.isAuthenticated
     }
 }
 
