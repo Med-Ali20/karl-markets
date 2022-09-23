@@ -6,7 +6,7 @@ import imgProcessor from '../../utils/imgProcessor'
 import styles from './styles/purchase.module.css'
 import { Link } from 'react-router-dom'
 
-const Index = ( { cart, incrementQuantity, decrementQuantity } ) => {
+const Index = ( { cart, incrementQuantity, decrementQuantity, removeItem } ) => {
     const [products, setProducts] = useState([])
     
     useEffect(() => {
@@ -20,10 +20,13 @@ const Index = ( { cart, incrementQuantity, decrementQuantity } ) => {
                         <div ><img src={`data:image/jpeg;base64,${imgProcessor(el.productPicture.data)}`} className={styles.productImage} width="320rem"  /></div>
                         <h3 className={styles.productName} >{el.productName}</h3>
                         <h3 className={styles.itemPrice} >{el.productPrice} <span className={styles.pound} >ج</span></h3>
-                        <div className={styles.quantityControls} >
-                            <button onClick={() => decrementQuantity(el.productId)} className={styles.subtract} >-</button>
-                            <h3 className={styles.quantity} >{el.productQuantity}</h3>
-                            <button onClick={() => incrementQuantity(el.productId)} className={styles.add} >+</button>
+                        <div className={styles.quantityArea} >
+                            <div className={styles.quantityControls} >
+                                <button onClick={() => decrementQuantity(el.productId)} className={styles.subtract} >-</button>
+                                <h3 className={styles.quantity} >{el.productQuantity}</h3>
+                                <button onClick={() => incrementQuantity(el.productId)} className={styles.add} >+</button>
+                            </div>
+                            <button className={styles.remove} onClick={()=> removeItem(el.productId)} >ازالة</button>
                         </div>
                         <h3 className={styles.total} ><span className={styles.totalPriceText} >{el.productQuantity * el.productPrice}</span>   <span className={styles.pound} >ج</span>  </h3>
                     </div>
@@ -60,7 +63,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         incrementQuantity: (id) => dispatch({type: 'INCREMENT',id}),
-        decrementQuantity: (id) => dispatch({type: 'DECREMENT',id})
+        decrementQuantity: (id) => dispatch({type: 'DECREMENT',id}),
+        removeItem: (id) => dispatch({type: 'REMOVE', id})
     }
 }
 

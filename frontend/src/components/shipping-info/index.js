@@ -48,13 +48,13 @@ const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage })
 
     const submitOrder = (e, form, token) => {
         e.preventDefault()
-        setLoading(true)
         if(!form.customerName || !form.fullAddress || !form.phoneNumber || !form.province || !form.products) {
             return setError({errorMessage: 'برجاء التأكد من اضافة البيانات الضرورية', isError: true})
         }
         if(form.phoneNumber.length < 11) { 
             return setError({errorMessage: 'رقم المحمول أقل من 11 خانة', isError: true})
          }
+        setLoading(true)
         axios.post('/order', form, {
             headers: {
                 Authorization: token

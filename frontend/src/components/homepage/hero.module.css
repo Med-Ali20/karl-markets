@@ -26,12 +26,36 @@
 }
 
 .galleryItemBackground {
-    background-color: #39A2DB;
     width: 40%;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.galleryItemBackground1 {
+    background-color: #a7a7a7;
+}
+
+.galleryItemBackground2 {
+    background-color: rgb(157, 172, 114);
+    border-right: 2px solid white;
+}
+
+.galleryItemBackground3 {
+    background-color: rgb(255, 235, 0);
+    border-right: 2px solid white;
+}
+
+.galleryItemBackground3 .galleryHeader {
+    color: #6d6d6d;
+}
+.galleryItemBackground3 .galleryProductName {
+    color: #000;
+}
+
+.galleryItemBackground4 {
+    background-color: rgb(210, 198, 186);
 }
 
 .heroBackgroundImg {

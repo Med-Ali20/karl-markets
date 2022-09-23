@@ -29,13 +29,17 @@ const cartReducer = (state=inititalState, action) => {
     if(action.type === 'DECREMENT') {
         const productsClone = [...state.products]
         const product = productsClone.find(el => el.productId == action.id)
-        if(product.productQuantity == 1){
-            const arrIndex = productsClone.findIndex(el => el.productId === product.productId)
-            productsClone.splice(arrIndex, 1)
-        }
+        if(product.productQuantity == 1){return}
         else {
             product.productQuantity = parseInt(product.productQuantity) -1
         }
+        return {products: productsClone}
+    }
+    if(action.type === 'REMOVE') {
+        const productsClone = [...state.products]
+        const product = productsClone.find(el => el.productId == action.id)
+        const arrIndex = productsClone.findIndex(el => el.productId === product.productId)
+        productsClone.splice(arrIndex, 1)
         return {products: productsClone}
     }
 

@@ -38,7 +38,7 @@ export default function Hero() {
             <div className={styles.prev} onClick={clickPrev}></div>
             <div className={styles.heroGallery} style={{transform: `translateX(${window.screen.width <= 600 ? -13.4*counter : -20*counter}%)`}} >
                 <div className={styles.galleryItem} >
-                    <div className={styles.galleryItemBackground} >
+                    <div className={`${styles.galleryItemBackground} ${styles.galleryItemBackground1}`} >
                         <img src={heroBackgroundImg}  className={styles.heroBackgroundImg} alt=""/>
                         <div className={styles.galleryItemText} >
                             <h1 className={styles.galleryHeader} >عروضنا المفضلة</h1>
@@ -49,7 +49,7 @@ export default function Hero() {
                     <img src={hero1}  className={styles.galleryProductPicture}  alt="" />
                 </div>
                 <div className={styles.galleryItem} >
-                    <div className={styles.galleryItemBackground} >
+                    <div className={`${styles.galleryItemBackground} ${styles.galleryItemBackground2}`} >
                         <img src={heroBackgroundImg}  className={styles.heroBackgroundImg} alt=""/>
                         <div className={styles.galleryItemText} >
                             <h1 className={styles.galleryHeader} >عروضنا المفضلة</h1>
@@ -60,7 +60,7 @@ export default function Hero() {
                     <img src={hero2}  className={styles.galleryProductPicture}  alt="" />
                 </div>
                 <div className={styles.galleryItem} >
-                    <div className={styles.galleryItemBackground} >
+                    <div className={`${styles.galleryItemBackground} ${styles.galleryItemBackground3}`} >
                         <img src={heroBackgroundImg}  className={styles.heroBackgroundImg} alt=""/>
                         <div className={styles.galleryItemText} >
                             <h1 className={styles.galleryHeader} >عروضنا المفضلة</h1>
@@ -71,7 +71,7 @@ export default function Hero() {
                     <img src={hero3}  className={styles.galleryProductPicture}  alt="" />
                 </div>
                 <div className={styles.galleryItem} >
-                    <div className={styles.galleryItemBackground} >
+                    <div className={`${styles.galleryItemBackground} ${styles.galleryItemBackground4}`} >
                         <img src={heroBackgroundImg}  className={styles.heroBackgroundImg} alt=""/>
                         <div className={styles.galleryItemText} >
                             <h1 className={styles.galleryHeader} >عروضنا المفضلة</h1>
