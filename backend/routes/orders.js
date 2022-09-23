@@ -2,9 +2,6 @@ const express = require('express')
 const Order = require('../models/orders')
 const auth = require('../utils/auth')
 const Product = require('../models/product')
-
-
-
 const router = express.Router()
 
 router.get('/product/category/:category_name', async (req, res) => {
@@ -14,7 +11,8 @@ router.get('/product/category/:category_name', async (req, res) => {
         res.status(200).json(products)
     }
     catch(error) {
-        res.send(error)
+        console.log(error)
+        res.status(404).json(error)
     }
     
 })  
@@ -41,7 +39,7 @@ router.get('/product/id/:id', async (req, res) => {
        
     }
     catch(error) {
-        res.send(error)
+        res.status(404).json('product not found')
     }
     
 })
@@ -68,7 +66,7 @@ router.post('/order',auth , async (req, res) => {
         res.send(newOrder)
     }
     catch(error) {
-        res.send(error)
+        res.status(400).json(error)
     }
     
 })

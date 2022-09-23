@@ -22,7 +22,7 @@ const Index = ( { token } ) => {
         .then(res => {
             setOrders(() => res.data)
             setLoading(false)
-        })  
+        }).catch(e => { return navigate('/', {replace: true}) })  
 
     },[])
 

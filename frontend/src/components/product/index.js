@@ -19,7 +19,9 @@ const Product = ({ addProduct, isAuthenticated, addProductSingle, isAdminAuth, t
     useEffect(() => {
         axios.get(`/product/id/${id}`)
         .then(res => res.data)
-        .then(data => {setProduct(data); setMainImageSrc(data.productPicture.data)})
+        .then(data => {setProduct(data); setMainImageSrc(data.productPicture.data)}).catch(error => {
+            navigate('/', {replace: true})
+        })
     },[])
 
     const addToCart = (e,id, price, name, quantity, picture ) => {

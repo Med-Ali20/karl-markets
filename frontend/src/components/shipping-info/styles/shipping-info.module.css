@@ -90,17 +90,13 @@
     border-bottom: 1px solid rgba(204, 204, 204, 0.678);
     padding-bottom: 1.5rem;
     position: relative;
+    align-items: flex-end;
+    width: 44rem;
 }
 
-.productImage {
-    width: 10rem;
-    margin-left: 1rem;
-}
 
 .productInfoText {
-    text-align: right;
-    line-height: 8px;
-    margin-left: 25rem;
+    text-align: center;
     margin-top: 1rem;
 }
 
@@ -108,12 +104,13 @@
     color: #222831cb;
     font-size: 1.8rem;
     font-weight: normal;
+    margin: 1rem 0;
 }
 
 .productPrice {
     font-weight: normal;
-    margin-top: 2rem;
-    font-size: 1.5rem;
+    margin: 1rem 0;
+    font-size: 2rem;
     display: flex;
     justify-content: flex-end;
     color: #39A2DB;
@@ -128,16 +125,16 @@
     position: absolute;
     background: #39A2DB;
     color: #fff;
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
     border-radius: 50%;
     text-align: center;
-    font-size: 2rem;
-    padding-top: 1.5rem;
-    top: -0.6rem;
-    left: 0%;
+    font-size: 1.8rem;
+    top: -5%;
+    right: 42%;
     font-weight: bold;
-
+    display: grid;
+    place-content: center;
 }
 
 .totalPaid {
@@ -200,12 +197,18 @@
         padding-right: 8rem;
     }
 
-        
+    .productCard {
+        margin-top: 4rem;
+        border-bottom: none;
+
+    }
+
     .quantity {
-        padding-top: 2px;
-        padding-right: 1px;
-        font-weight: normal;
-        left: 10%;
+        right: 65%;
+        top: -2%;
+        width: 5rem;
+        height: 5rem;
+        font-size: 2.5rem;
 
     }
 

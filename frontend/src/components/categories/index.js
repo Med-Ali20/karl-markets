@@ -30,14 +30,15 @@ const Category = ({addProduct, isAuthenticated, addProductSingle, showMessage, h
     }, [category, search])
 
     const getProducts = () => {
+        console.log('hi')
         setLoader()
         if(window.location.href.includes('search')) {
             axios.get(`/product/search/${search}?limit=9&skip=${skip}`)
             .then( ({ data }) => {
                 if(data.length === 0) {
-                    setHasMore(false)
-                    disableLoader()
-                    return setLoading(false)
+                    navigate('/', {replace: true})
+                    showMessage('لا توجد منتجات للعرض')
+                    setTimeout(hideMessage, 3000)
                 }
                 setProducts(products.concat(data)) 
                 setSkip(skip + 9)
@@ -61,14 +62,23 @@ const Category = ({addProduct, isAuthenticated, addProductSingle, showMessage, h
 
             axios.get(`/product/category/${category}?limit=9&skip=${skip}`)
             .then( ({ data }) => {
-                if(data.length === 0) {
+
+                if(data.length === 0 && products.length === 0) {
+                    navigate('/', {replace: true})
+                    showMessage('لا توجد منتجات للعرض')
+                    setTimeout(hideMessage, 3000)
+                }
+                if(data.length === 0 ) {
                     setHasMore(false)
                     disableLoader()
                     return setLoading(false)
                 }
+                
                 setProducts(products.concat(data))
                 setSkip(skip + 9)
                 disableLoader()
+            }).catch(error => {
+                console.log(error)
             })
         }
     }
@@ -78,7 +88,7 @@ const Category = ({addProduct, isAuthenticated, addProductSingle, showMessage, h
         addProduct({id, price, name, quantity, picture})
         
         if(isAuthenticated){
-            showMessage()
+            showMessage('تمت اضافة المنتج الى السلة')
             setTimeout(hideMessage, 3000)
             return
         }
@@ -146,7 +156,7 @@ const mapDispatchToProps = dispatch => {
     return {
         addProduct: (payload) => dispatch({type: 'ADD_PRODUCT', payload}) ,
         addProductSingle: (payload) => dispatch({type: 'SUBMIT_ITEM', payload}),
-        showMessage: () => dispatch({type: 'SHOW_MESSAGE',payload: 'تمت اضافة المنتج الى السلة'}),
+        showMessage: (payload) => dispatch({type: 'SHOW_MESSAGE',payload: payload}),
         hideMessage: () => dispatch({type: 'HIDE_MESSAGE'}),
         setLoader: () => dispatch({type: 'SET_LOADING'}),
         disableLoader: () => dispatch({type: 'DISABLE_LOADING'})

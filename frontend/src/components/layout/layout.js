@@ -43,7 +43,8 @@ const Layout = ({children, isAuthenticated, isAdminAuth, showMessage, messageTex
     const menuList = menuLinksSet.map(el => <Link to={`/categories/${el}`} key={el}  onClick={hideMenu} style={{pointerEvents: isLoading ? 'none' : ''}} className={styles.modalLink} >{el}</Link>)
 
     const searchProduct = (e) => {
-        e.preventDefault();
+        e.preventDefault()
+        if(searchParams === '') return;
         navigate(`/categories/search/${searchParams}`)
         setSearchParams('')
     }
@@ -105,7 +106,7 @@ const Layout = ({children, isAuthenticated, isAdminAuth, showMessage, messageTex
         </>
     )
     
-    const style = {transform: `translateY(${showMessage ? 0 : -100}%)`}
+    const style = {transform: `translateY(${showMessage ? 0 : -100}%)`, background: `${messageText === 'لا توجد منتجات للعرض' ? 'grey' : 'rgb(37, 185, 8)'}`}
 
     let menuLinks 
     if(!isAdminAuth) {
