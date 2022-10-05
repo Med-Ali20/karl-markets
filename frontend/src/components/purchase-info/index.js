@@ -2,12 +2,14 @@ import React from 'react'
 import arrow from '../../assets/icons/arrow.png'
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import imgProcessor from '../../utils/imgProcessor'
 import styles from './styles/purchase.module.css'
 import { Link } from 'react-router-dom'
 
 const Index = ( { cart, incrementQuantity, decrementQuantity, removeItem } ) => {
     const [products, setProducts] = useState([])
+    const navigate = useNavigate()
     
     useEffect(() => {
         setProducts(() => cart.products)
@@ -17,8 +19,8 @@ const Index = ( { cart, incrementQuantity, decrementQuantity, removeItem } ) => 
         return(
             
                     <div className={styles.tableItem} key={el.productId} >
-                        <div ><img src={`data:image/jpeg;base64,${imgProcessor(el.productPicture.data)}`} className={styles.productImage} width="320rem"  /></div>
-                        <h3 className={styles.productName} >{el.productName}</h3>
+                        <div ><img src={`data:image/jpeg;base64,${imgProcessor(el.productPicture.data)}`} className={styles.productImage} width="320rem" onClick={() => navigate(`/product/${el.productId}`)}  /></div>
+                        <h3 className={styles.productName} onClick={() => navigate(`/product/${el.productId}`)} >{el.productName}</h3>
                         <h3 className={styles.itemPrice} >{el.productPrice} <span className={styles.pound} >ج</span></h3>
                         <div className={styles.quantityArea} >
                             <div className={styles.quantityControls} >

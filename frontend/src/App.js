@@ -9,7 +9,7 @@ import './App.css';
 function App() {
   
   return (
-    <BrowserRouter>
+    <BrowserRouter >
       <Provider store={store} >
         <Layout>
             <AppRoutes />

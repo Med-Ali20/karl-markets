@@ -12,7 +12,7 @@ import signUpIcon from '../../assets/icons/sign-up.png'
 import logout from '../../assets/icons/logout.png'
 
 
-const Layout = ({children, isAuthenticated, isAdminAuth, showMessage, messageText, isLoading}) => {
+const Layout = ({children, isAuthenticated, isAdminAuth, showMessage, messageText, isLoading }) => {
     
     const [modalStyle, setModalStyle] = useState({display: 'none'})
     const [menuBackgroundStyle, setMenuBackgroundStyle] = useState({visibility: 'hidden', opacity:'0', transition: 'all 0.3s'})
@@ -31,16 +31,18 @@ const Layout = ({children, isAuthenticated, isAdminAuth, showMessage, messageTex
         setMenuBackgroundStyle(() => {return {visibility: 'hidden', opacity:'0', transition: 'all 0.3s'}})
     }
 
+    
+
     const categoryBarLinks = ['أدوات منزلية','ملابس','اكسسوارات موبايل','عناية شخصية','أحذية','ساعات','الساعات الذكيه']
     const modalLinksSet1 = ['أدوات منزلية','ملابس','اكسسوارات موبايل','عناية شخصية','أحذية','ساعات','الساعات الذكيه','مستلزمات كمبيوتر']
     const modalLinksSet2 = ['عروض حصرية','أجهزة إلكترونية صغيرة','العاب','شنط و محافظ','مستحضرات تجميل','مفروشات','مستلزمات أطفال','مستلزمات طبية']
     const modalLinksSet3 = ['مستلزمات الحيوانات الأليفة','اكسسوارات سيارات','مكن حلاقة','معدات صيانه','مراوح و مكييفات','Gaming']
     const menuLinksSet = [...modalLinksSet1,...modalLinksSet2,...modalLinksSet3]
-    const categoryList = categoryBarLinks.map(el => { return <Link to={`/categories/${el}`} key={el}   style={{pointerEvents: isLoading ? 'none' : ''}} ><p className={styles.categoryBarLink} >  {el} </p></Link> })
-    const modalList1 = modalLinksSet1.map(el => {return <Link to={`/categories/${el}`} key={el}   style={{pointerEvents: isLoading ? 'none' : ''}} className={styles.modalLink} >{el}</Link>})
-    const modalList2 = modalLinksSet2.map(el => {return <Link to={`/categories/${el}`} key={el}   style={{pointerEvents: isLoading ? 'none' : ''}} className={styles.modalLink} >{el}</Link>})
-    const modalList3 = modalLinksSet3.map(el => {return <Link to={`/categories/${el}`} key={el}   style={{pointerEvents: isLoading ? 'none' : ''}} className={styles.modalLink} >{el}</Link>})
-    const menuList = menuLinksSet.map(el => <Link to={`/categories/${el}`} key={el}  onClick={hideMenu} style={{pointerEvents: isLoading ? 'none' : ''}} className={styles.modalLink} >{el}</Link>)
+    const categoryList = categoryBarLinks.map(el => { return <Link to={`/categories/${el}`} key={el} style={{pointerEvents: isLoading ? 'none' : ''}}  ><p className={styles.categoryBarLink} >  {el} </p></Link> })
+    const modalList1 = modalLinksSet1.map(el => {return <Link to={`/categories/${el}`} key={el} style={{pointerEvents: isLoading ? 'none' : ''}}  className={styles.modalLink} >{el}</Link>})
+    const modalList2 = modalLinksSet2.map(el => {return <Link to={`/categories/${el}`} key={el} style={{pointerEvents: isLoading ? 'none' : ''}}  className={styles.modalLink} >{el}</Link>})
+    const modalList3 = modalLinksSet3.map(el => {return <Link to={`/categories/${el}`} key={el} style={{pointerEvents: isLoading ? 'none' : ''}}  className={styles.modalLink} >{el}</Link>})
+    const menuList = menuLinksSet.map(el => <Link to={`/categories/${el}`} key={el}  onClick={() => {hideMenu()}} style={{pointerEvents: isLoading ? 'none' : ''}}  className={styles.modalLink} >{el}</Link>)
 
     const searchProduct = (e) => {
         e.preventDefault()
@@ -204,8 +206,10 @@ const mapStateToProps = state => {
         isAdminAuth: state.adminAuth.isAuthenticated,
         showMessage: state.message.showMessage,
         messageText: state.message.messageText,
-        isLoading: state.message.isLoading
+        isLoading: state.message.isLoading,
     }
 }
+
+
 
 export default connect(mapStateToProps)(Layout)

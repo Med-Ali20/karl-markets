@@ -4,7 +4,7 @@ import styles from './styles/categories.module.css'
 import addIcon from '../../assets/icons/add.png'
 import arrow from '../../assets/icons/arrow.png'
 import { useEffect } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, Link, useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import imgProcessor from '../../utils/imgProcessor'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -12,7 +12,7 @@ import { connect } from 'react-redux'
 import { Spinner } from '../../utils/Spinner'
 
 
-const Category = ({addProduct, isAuthenticated, addProductSingle, showMessage, hideMessage, setLoader, disableLoader}) => {
+const Category = ({addProduct, isAuthenticated, addProductSingle, showMessage, hideMessage, setLoader, disableLoader }) => {
 
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
@@ -20,6 +20,7 @@ const Category = ({addProduct, isAuthenticated, addProductSingle, showMessage, h
     const [skip, setSkip] = useState(0)
     const { category, search } = useParams()
     const navigate = useNavigate()
+    const location = useLocation()
 
     useEffect(() => {
         setProducts([])
@@ -27,18 +28,24 @@ const Category = ({addProduct, isAuthenticated, addProductSingle, showMessage, h
         setHasMore(true)
         setLoading(true)
         window.scroll({top: 150, behavior: 'smooth'})
-    }, [category, search])
+        console.log('location changed')
+    }, [location, search])
 
     const getProducts = () => {
-        console.log('hi')
         setLoader()
+        
         if(window.location.href.includes('search')) {
             axios.get(`/product/search/${search}?limit=9&skip=${skip}`)
             .then( ({ data }) => {
-                if(data.length === 0) {
+                if(data.length === 0 && products.length === 0) {
                     navigate('/', {replace: true})
                     showMessage('لا توجد منتجات للعرض')
                     setTimeout(hideMessage, 3000)
+                }
+                if(data.length === 0 ) {
+                    setHasMore(false)
+                    disableLoader()
+                    return setLoading(false)
                 }
                 setProducts(products.concat(data)) 
                 setSkip(skip + 9)
@@ -132,12 +139,13 @@ const Category = ({addProduct, isAuthenticated, addProductSingle, showMessage, h
             dataLength={products.length}
             hasMore={hasMore}   
             next={getProducts}
-            loader={<h3> <Spinner /> </h3>} >
+            loader={<h3> <Spinner /> </h3>}
+            style={{overflowX: 'hidden'}} >
             <h1 className={styles.categoryName}> {category || search || 'عرض المنتجات'} </h1>
             
             <div 
             className={styles.products}>
-                {products.length === 0? <h1 style={{textAlign: 'center'}} > {loading ? "": 'لا توجد منتجات للعرض'} </h1>: productArray }  
+                {products.length === 0 ? <h1 style={{textAlign: 'center'}} > {loading ? "": 'لا توجد منتجات للعرض'} </h1>: productArray }  
             </div>
 
         </InfiniteScroll>
@@ -148,7 +156,7 @@ const mapStateToProps = state => {
     return {
         product: state.boughtItem,
         cart: state.cart,
-        isAuthenticated: state.userAuth.isAuthenticated
+        isAuthenticated: state.userAuth.isAuthenticated,
     }
 }
 
@@ -159,7 +167,7 @@ const mapDispatchToProps = dispatch => {
         showMessage: (payload) => dispatch({type: 'SHOW_MESSAGE',payload: payload}),
         hideMessage: () => dispatch({type: 'HIDE_MESSAGE'}),
         setLoader: () => dispatch({type: 'SET_LOADING'}),
-        disableLoader: () => dispatch({type: 'DISABLE_LOADING'})
+        disableLoader: () => dispatch({type: 'DISABLE_LOADING'}),
     }
 }
 

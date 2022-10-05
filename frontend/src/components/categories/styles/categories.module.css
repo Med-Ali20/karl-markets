@@ -132,8 +132,9 @@
 @media only screen and (max-width: 600px) {
     
     .products {
-
         grid-template-columns: repeat(auto-fit, 35rem);
+        width: 100vw;
+        overflow-x: hidden;
     }
     .addToCart {
         padding: 1rem 2rem;

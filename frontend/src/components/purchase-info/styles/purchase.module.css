@@ -87,6 +87,7 @@
     margin-right: 0;
     margin-top: 0.8rem;
     margin-left: 0.6rem;
+    cursor: pointer;
 }
 
 .productName {
@@ -95,6 +96,8 @@
     margin-top: 0;
     font-weight: 400;
     opacity: 0.8;
+    cursor: pointer;
+    align-self: start;
 }
 
 .quantityArea {

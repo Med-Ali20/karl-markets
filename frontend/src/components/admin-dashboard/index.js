@@ -123,8 +123,8 @@ const Index = ({ token, showMessage, hideMessage }) => {
                     </div>
                     
                     <button type="submit" className={styles.cta} > اضف المنتج </button>
+                    { error ? <p style={{fontSize: '2rem', color: 'red',textAlign: 'right', paddingRight: '1rem'}} >خطأ في اضافة المنتج</p> : ''}
                     <Link to="/orders" className={styles.cta} style={{background: '#1fc739'}} >عرض الطلبات</Link>
-                    { error ? <p style={{fontSize: '2rem', color: 'red'}} >خطأ في اضافة المنتج</p> : ''}
                 </form>
                 
             </div>

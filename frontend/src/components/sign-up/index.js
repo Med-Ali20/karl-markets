@@ -13,8 +13,7 @@ import { Link, useNavigate } from 'react-router-dom'
 const Index = ( { setUserAuthentication, cart, boughtItem, isAuthenticated } ) => {
     const [userName, setUserName] = useState('')
     const [email, setEmail] = useState('')
-    const [passwordError, setPasswordError] = useState(false)
-    const [emaildError, setEmailError] = useState(false)
+    const [error, setError] = useState({isError: false, message: ''})
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
 
@@ -26,15 +25,18 @@ const Index = ( { setUserAuthentication, cart, boughtItem, isAuthenticated } ) =
 
     const submitNewAccount = (e, userName, email, password) => {
         e.preventDefault()
-        setEmailError(false)
-        setEmailError(false)
+        setError({isError: false, message: ''})
         const requestBody = {username: userName, email, password}
 
         if(password.length < 7) {
-            setPasswordError(true)
+            return setError({isError: true, message: 'كلمة السر 7 خانات او اكثر'})
         }
 
-        if(email.length === 0 || userName.length === 0) return
+        if(userName.length < 3) {
+            return setError({isError: true, message: 'اسم المستخدم 3 خانات او اكثر'})
+        }
+
+        if(email.length === 0) { return setError({isError: true, message: 'برجاء ادخال البريد الالكتروني'})}
 
         axios.post(`/users`,requestBody).then(res => {
             const payload = {
@@ -61,7 +63,11 @@ const Index = ( { setUserAuthentication, cart, boughtItem, isAuthenticated } ) =
             return navigate('/', { replace: true })
             
         }).catch(error => {
-            setEmailError(true)
+            console.log(error)
+            if(error.response.data.message === 'User validation failed: email: Email is invalid') {
+                return setError({isError: true, message: 'برجاء ادخال بريد الكتروني صحيح'})
+            }
+            setError({isError: true, message: 'البريد الالكتروني موجود بالفعل'})
         })
 
     }
@@ -94,10 +100,8 @@ const Index = ( { setUserAuthentication, cart, boughtItem, isAuthenticated } ) =
                 </div>
                 <a onClick={(e) => submitNewAccount(e, userName, email, password)} className={styles.cta} ><span ><img src={arrow} className={styles.ctaArrow} /></span>انشاء حساب</a>
                 <Link to="/login" className={styles.alreadyUser} style={{color: 'orange', fontSize: '1.6rem', marginTop: '1rem'}} >لديك حساب؟ نسجيل الدخول</Link>
-                {passwordError ? <p className={styles.error} style={{color: 'red', fontSize: '1.6rem'}} >كلمة السر 7 خانات او اكثر</p> : ''}
-                {emaildError ? <p className={styles.error} style={{color: 'red', fontSize: '1.6rem'}} >البريد الالكتروني موجود بالفعل</p> : ''}
+                {error.isError ? <p className={styles.error} style={{color: 'red', fontSize: '1.6rem'}} >{error.message}</p> : ''}
             </form>
-
         </div>
     )
 }
