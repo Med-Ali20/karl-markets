@@ -8,6 +8,7 @@ import axios from 'axios'
 import imgProcessor from '../../utils/imgProcessor'
 import { connect } from 'react-redux'
 import { Spinner } from '../../utils/Spinner'
+import ReactPixel from 'react-facebook-pixel'
 
 
 const Product = ({ addProduct, isAuthenticated, addProductSingle, isAdminAuth, token }) => {
@@ -17,11 +18,16 @@ const Product = ({ addProduct, isAuthenticated, addProductSingle, isAdminAuth, t
     const { id } = useParams()
 
     useEffect(() => {
+        
+        ReactPixel.init('684774793231540')
+        ReactPixel.pageView()
+
         axios.get(`/product/id/${id}`)
         .then(res => res.data)
         .then(data => {setProduct(data); setMainImageSrc(data.productPicture.data)}).catch(error => {
             navigate('/', {replace: true})
         })
+        
     },[])
 
     const addToCart = (e,id, price, name, quantity, picture ) => {

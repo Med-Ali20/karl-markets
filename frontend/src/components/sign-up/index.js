@@ -67,7 +67,6 @@ const Index = ( { setUserAuthentication, cart, boughtItem, isAuthenticated } ) =
             if(error.response.data.message === 'User validation failed: email: Email is invalid') {
                 return setError({isError: true, message: 'برجاء ادخال بريد الكتروني صحيح'})
             }
-            setError({isError: true, message: 'البريد الالكتروني موجود بالفعل'})
         })
 
     }

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import imgProcessor from '../../utils/imgProcessor'
 import { Spinner } from '../../utils/Spinner'
-
+import ReactPixel from 'react-facebook-pixel'
 
 const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage }) => {
 
@@ -16,10 +16,11 @@ const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage })
     const [phoneNumber, setPhoneNumber] = useState('')
     const [province, setProvince] = useState('')
     const [address, setAddress] = useState('')
+    const [email, setEmail] = useState('')
     const [description, setDescription] = useState('')
     const [salesManCode, setSalesManCode] = useState('')
     const [loading, setLoading] = useState(false)
-    const[error, setError] = useState({errorMessage: '', isError: false})
+    const [error, setError] = useState({errorMessage: '', isError: false})
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -46,8 +47,29 @@ const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage })
         )
     })
 
+    const setupPixel = (em, fullname, ph, st, products) => {
+        const options = {
+            autoConfig: true, 
+            debug: false
+        }
+        const name = fullname.split(' ')
+        console.log(name)
+        const advancedMatching = {
+             em,
+             ph,
+             st,
+             fn: name[0],
+             ln: name[name.length - 1]
+
+        }
+        console.log(advancedMatching)
+        ReactPixel.init('684774793231540', advancedMatching, options)
+        ReactPixel.track('Purchase', {value: products.map(el => el.productPrice* el.productQuantity).reduce(reducer)})
+    }
+
     const submitOrder = (e, form, token) => {
         e.preventDefault()
+        setError({isError: false, errorMessage: ''})
         if(!form.customerName || !form.fullAddress || !form.phoneNumber || !form.province || !form.products) {
             return setError({errorMessage: 'برجاء التأكد من اضافة البيانات الضرورية', isError: true})
         }
@@ -60,12 +82,28 @@ const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage })
                 Authorization: token
             }
         }).then( res => {
+            setupPixel(
+                form.email,
+                form.customerName,
+                form.phoneNumber,
+                form.province,
+                products
+
+            )
             setLoading(false)
             clearCart()
             navigate('/user-dashboard', {replace: true})
             showMessage()
             setTimeout(hideMessage, 3000)
-        }).catch(e => {return navigate(0)})
+        }).catch(error => {
+            setLoading(false)
+            console.log(error)
+            if(error.response.data.message === 'Order validation failed: email: Email is invalid') {
+                return setError({isError: true, errorMessage: 'برجاء ادخال بريد الكتروني صحيح'})
+            }
+        })
+
+        
     }
 
 
@@ -92,6 +130,10 @@ const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage })
                         <label htmlFor="address" className={styles.label} >العنوان</label>
                     </div>
                     <div className={styles.inputArea} >
+                        <input type="email" value={email} onChange={(e) => { setEmail(() => e.target.value) } } className={styles.inputField} id="email" />
+                        <label htmlFor="email" className={styles.label} >البريد الالكتروني</label>
+                    </div>
+                    <div className={styles.inputArea} >
                         <input type="text" value={description} onChange={(e) => { setDescription(() => e.target.value) } } className={styles.inputField} id="description" />
                         <label htmlFor="description" className={styles.label} >معلومات اضافية - مقاس - حجم (اختياري)</label>
                     </div>
@@ -105,6 +147,7 @@ const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage })
                     phoneNumber,
                     province,
                     description,
+                    email,
                     products: products.map(el => {
                         return {
                             productId: el.productId,
