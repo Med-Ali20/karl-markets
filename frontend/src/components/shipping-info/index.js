@@ -49,10 +49,7 @@ const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage })
     })
 
     const setupPixel = (em, fullname, ph, st, products) => {
-        const options = {
-            autoConfig: true, 
-            debug: false
-        }
+
         const name = fullname.split(' ')
         const advancedMatching = {
              em,
@@ -61,7 +58,7 @@ const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage })
              fn: name[0],
              ln: name[name.length - 1],
              id:'383063303951102',
-             token: 'EAAGFZCwOMhuQBAOWC4wpVdZBW78qwLU3sIApMNcGZAPMW4j0nhUUsmiw79VXeB8ZAzW6qPeW4ABQCuXD4Q4j1RqpWwSrxBPnOsgdpGkQqdSwlZCMIl3VC2QYanYSNZA9yijxn6SKqvl4jNI4cu9Xk5rg0KBrUPHBv9ZCG9oC6eGpSENG7iY2qSy'
+             token: 'EAAGFZCwOMhuQBAHrhBG6e4OCUlxiAvlZCZByto3sDcjeA1iREnw5ZBVAXXCP7aYzxo9E5MEDHzXbZC5YZCuvNE5lJEkfkQgcYZARPCZA1zUuYa0g7ysJfJMV0jGZCb7O18OfuLp9ZCDzKKRpFtj1qZC3uZBNIXqU9ZCa1PEDlZAvnqZCiZBatBDxtSD3BL1m'
 
         }
        axios.post(`https://graph.facebook.com/v15.0/${advancedMatching.id}/events?access_token=${advancedMatching.token}`,
