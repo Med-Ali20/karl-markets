@@ -58,7 +58,7 @@ const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage })
              fn: name[0],
              ln: name[name.length - 1],
              id:'383063303951102',
-             token: 'EAAGFZCwOMhuQBAHrhBG6e4OCUlxiAvlZCZByto3sDcjeA1iREnw5ZBVAXXCP7aYzxo9E5MEDHzXbZC5YZCuvNE5lJEkfkQgcYZARPCZA1zUuYa0g7ysJfJMV0jGZCb7O18OfuLp9ZCDzKKRpFtj1qZC3uZBNIXqU9ZCa1PEDlZAvnqZCiZBatBDxtSD3BL1m'
+             token: 'EAAGFZCwOMhuQBAOcfZBBHVyOLRBMetY9sZC8d0LtR5G026mJsUHKnz1pFj64DAxEvSpb1cbaumavv33o0kQCv4clBNSffIkMmjtQijr2d22Ameg1kR9ezXDD2ye3ZBUMj0q7I6kQJ2gpH6qJc7iTPnRZA8asXGZB4ijl5qqR1am4sLrAeWpuDf'
 
         }
        axios.post(`https://graph.facebook.com/v15.0/${advancedMatching.id}/events?access_token=${advancedMatching.token}`,
