@@ -12,7 +12,7 @@ import { connect } from 'react-redux'
 import { Spinner } from '../../utils/Spinner'
 
 
-const Category = ({addProduct, isAuthenticated, addProductSingle, showMessage, hideMessage, setLoader, disableLoader }) => {
+const Category = ({addProduct, isAuthenticated, addProductSingle, clearCart, showMessage, hideMessage, setLoader, disableLoader }) => {
 
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
@@ -94,25 +94,26 @@ const Category = ({addProduct, isAuthenticated, addProductSingle, showMessage, h
         e.preventDefault()
         addProduct({id, price, name, quantity, picture})
         
-        if(isAuthenticated){
+        // if(isAuthenticated){
             showMessage('تمت اضافة المنتج الى السلة')
             setTimeout(hideMessage, 3000)
             return
-        }
+        // }
 
-        navigate('/sign-up')
+        // navigate('/sign-up')
 
     }
 
     const buyProduct = (e,id, price, name, quantity, picture ) => {
         e.preventDefault()
+        clearCart()
         addProductSingle({id, price, name, quantity, picture})
         
-        if(isAuthenticated){
+        // if(isAuthenticated){
             return navigate('/shipping-info')
-        }
+        // }
 
-        navigate('/sign-up')
+        // navigate('/sign-up')
 
     }
 
@@ -162,7 +163,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addProduct: (payload) => dispatch({type: 'ADD_PRODUCT', payload}) ,
+        addProduct: (payload) => dispatch({type: 'ADD_PRODUCT', payload}),
+        clearCart: () => dispatch({type: 'CLEAR'}),
         addProductSingle: (payload) => dispatch({type: 'SUBMIT_ITEM', payload}),
         showMessage: (payload) => dispatch({type: 'SHOW_MESSAGE',payload: payload}),
         hideMessage: () => dispatch({type: 'HIDE_MESSAGE'}),

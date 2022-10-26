@@ -69,7 +69,7 @@ const Layout = ({children, isAuthenticated, isAdminAuth, showMessage, messageTex
                                 </div>
                             </li>
                         </Link>
-                <Link to={!isAuthenticated ? '/login' : '/user-dashboard'} >
+                {/* <Link to={!isAuthenticated ? '/login' : '/user-dashboard'} >
                             <li className={`${styles.navLink} ${styles.navLink1}`} style={!isAuthenticated?{}: {marginLeft:'-2rem'}}>
                                 <p className={`${styles.navLinkText} ${styles.navLinkText1}`} >{!isAuthenticated? 'تسجيل الدخول' : 'حسابي'}</p>
                                 <div>
@@ -84,7 +84,7 @@ const Layout = ({children, isAuthenticated, isAdminAuth, showMessage, messageTex
                                     <img src={!isAuthenticated? signUpIcon : logout} alt="cart" className={`${styles.navLinkIcon} ${styles.navLinkIcon2}`} />
                                 </div>
                             </li>
-                        </Link>
+                        </Link> */}
             </>
         )
     } else navLinks = (

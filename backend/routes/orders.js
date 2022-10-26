@@ -1,6 +1,6 @@
 const express = require('express')
 const Order = require('../models/orders')
-const auth = require('../utils/auth')
+// const auth = require('../utils/auth')
 const Product = require('../models/product')
 const router = express.Router()
 
@@ -58,9 +58,9 @@ router.get('/product/all', async (req, res) => {
 })
 
 
-router.post('/order',auth , async (req, res) => {
+router.post('/order', async (req, res) => {
     const user = req.user
-    const newOrder = new Order({...req.body, owner: user._id })
+    const newOrder = new Order({...req.body})
     try {
         await newOrder.save()
         res.send(newOrder)
@@ -71,21 +71,21 @@ router.post('/order',auth , async (req, res) => {
     
 })
 
-router.get('/orders', auth, async(req, res) => {
-    const user = req.user
-    try {
-        await user.populate('orders')
-        res.status(200).json(user.orders)
-    }
+// router.get('/orders', auth, async(req, res) => {
+//     const user = req.user
+//     try {
+//         await user.populate('orders')
+//         res.status(200).json(user.orders)
+//     }
 
-    catch(e){
-        res.send(e)
-    }
+//     catch(e){
+//         res.send(e)
+//     }
      
     
-})
+// })
 
-router.delete('/order/:id', auth, async(req, res) => {
+router.delete('/order/:id', async(req, res) => {
     try {
         await Order.findByIdAndDelete(req.params.id)
         res.status(200).send('deleted')

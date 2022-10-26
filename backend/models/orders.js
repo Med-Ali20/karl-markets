@@ -54,10 +54,10 @@ const orderSchema = new mongoose.Schema({
         type: String,
         ref: 'Admin'
     },
-    owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
+    // owner: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'User'
+    // },
     description: {
         type: String,
     },

@@ -27,9 +27,9 @@ const AppRoutes = ({ isAdminAuth, isAuth }) => {
             <Route path="/login" element={<Login />} />
             <Route path="/product/:id" element={<Product />} />
             <Route path="/purchase-info" element={<PurchaseInfo />} />
-            <Route path="/shipping-info" element={isAuth ? <ShippingInfo /> : <Navigate to="/" replace/>} />
-            <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/user-dashboard" element={isAuth ? <UserDashboard /> : <Navigate to="/" replace/>} />
+            <Route path="/shipping-info" element={<ShippingInfo /> } />
+            {/* <Route path="/sign-up" element={<SignUp />} /> */}
+            {/* <Route path="/user-dashboard" element={isAuth ? <UserDashboard /> : <Navigate to="/" replace/>} /> */}
             <Route path="*" element={<Navigate to="/" ></Navigate>} />
 
         </Routes>

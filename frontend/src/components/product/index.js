@@ -11,7 +11,7 @@ import { Spinner } from '../../utils/Spinner'
 import ReactPixel from 'react-facebook-pixel'
 
 
-const Product = ({ addProduct, isAuthenticated, addProductSingle, isAdminAuth, token }) => {
+const Product = ({ addProduct, isAuthenticated, addProductSingle, clearCart, isAdminAuth, token }) => {
     const [mainImageSrc, setMainImageSrc] = useState('')
     const [product, setProduct] = useState({})
     const navigate = useNavigate()
@@ -33,21 +33,22 @@ const Product = ({ addProduct, isAuthenticated, addProductSingle, isAdminAuth, t
     const addToCart = (e,id, price, name, quantity, picture ) => {
         e.preventDefault()
         addProduct({id, price, name, quantity, picture})
-        if(isAuthenticated) {
+        // if(isAuthenticated) {
             return navigate('/purchase-info')
-        }
-        navigate('/sign-up')
+        // }
+        // navigate('/sign-up')
     }
 
     const buyProduct = (e,id, price, name, quantity, picture ) => {
         e.preventDefault()
+        clearCart()
         addProductSingle({id, price, name, quantity, picture})
         
-        if(isAuthenticated){
+        // if(isAuthenticated){
             return navigate('/shipping-info')
-        }
+        // }
 
-        navigate('/sign-up')
+        // navigate('/sign-up')
 
     }
 
@@ -106,6 +107,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         addProduct: (payload) => dispatch({type: 'ADD_PRODUCT', payload}),
+        clearCart: () => dispatch({type: 'CLEAR'}),
         addProductSingle: (payload) => dispatch({type: 'SUBMIT_ITEM', payload}) 
 
     }

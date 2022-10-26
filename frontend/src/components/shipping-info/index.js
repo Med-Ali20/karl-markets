@@ -29,6 +29,10 @@ const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage })
         } else {
             setProducts(() =>[boughtItem])
         }
+
+        
+
+
     }, [cart.products])
 
     const reducer = (previousValue, currentValue) => parseInt(previousValue) + parseInt(currentValue);
