@@ -5,9 +5,9 @@ import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import sha256 from 'crypto-js/sha256';
 import imgProcessor from '../../utils/imgProcessor'
 import { Spinner } from '../../utils/Spinner'
-import ReactPixel from 'react-facebook-pixel'
 
 const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage }) => {
 
@@ -29,9 +29,6 @@ const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage })
         } else {
             setProducts(() =>[boughtItem])
         }
-
-        
-
 
     }, [cart.products])
 
@@ -57,18 +54,39 @@ const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage })
             debug: false
         }
         const name = fullname.split(' ')
-        console.log(name)
         const advancedMatching = {
              em,
              ph,
              st,
              fn: name[0],
-             ln: name[name.length - 1]
+             ln: name[name.length - 1],
+             id:'383063303951102',
+             token: 'EAAGFZCwOMhuQBAOWC4wpVdZBW78qwLU3sIApMNcGZAPMW4j0nhUUsmiw79VXeB8ZAzW6qPeW4ABQCuXD4Q4j1RqpWwSrxBPnOsgdpGkQqdSwlZCMIl3VC2QYanYSNZA9yijxn6SKqvl4jNI4cu9Xk5rg0KBrUPHBv9ZCG9oC6eGpSENG7iY2qSy'
 
         }
-        console.log(advancedMatching)
-        ReactPixel.init('684774793231540', advancedMatching, options)
-        ReactPixel.track('Purchase', {value: products.map(el => el.productPrice* el.productQuantity).reduce(reducer)})
+       axios.post(`https://graph.facebook.com/v15.0/${advancedMatching.id}/events?access_token=${advancedMatching.token}`,
+       {
+        "data": [
+            {
+                "event_name": "Purchase",
+                "event_time": Math.floor(Date.now() / 1000),
+                "action_source": "website ",
+                "user_data": {
+                    "em": sha256(advancedMatching.em).toString(),
+                    "ph": sha256(advancedMatching.ph).toString(),
+                    "st": sha256(advancedMatching.st).toString(),
+                    "fn": sha256(advancedMatching.fn).toString(),
+                    "ln": sha256(advancedMatching.lm).toString()
+                },
+                "custom_data": {
+                    "currency": "EGP",
+                    "value": products.map(el => el.productPrice* el.productQuantity).reduce(reducer)
+                }
+            }
+        ]
+    }).then(res => {
+        console.log(res)
+    })
     }
 
     const submitOrder = (e, form, token) => {

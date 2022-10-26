@@ -8,10 +8,9 @@ import axios from 'axios'
 import imgProcessor from '../../utils/imgProcessor'
 import { connect } from 'react-redux'
 import { Spinner } from '../../utils/Spinner'
-import ReactPixel from 'react-facebook-pixel'
 
 
-const Product = ({ addProduct, isAuthenticated, addProductSingle, clearCart, isAdminAuth, token }) => {
+const Product = ({ addProduct, isAuthenticated, addProductSingle, isAdminAuth, token }) => {
     const [mainImageSrc, setMainImageSrc] = useState('')
     const [product, setProduct] = useState({})
     const navigate = useNavigate()
@@ -19,9 +18,6 @@ const Product = ({ addProduct, isAuthenticated, addProductSingle, clearCart, isA
 
     useEffect(() => {
         
-        ReactPixel.init('684774793231540')
-        ReactPixel.pageView()
-
         axios.get(`/product/id/${id}`)
         .then(res => res.data)
         .then(data => {setProduct(data); setMainImageSrc(data.productPicture.data)}).catch(error => {
@@ -29,6 +25,7 @@ const Product = ({ addProduct, isAuthenticated, addProductSingle, clearCart, isA
         })
         
     },[])
+  
 
     const addToCart = (e,id, price, name, quantity, picture ) => {
         e.preventDefault()
@@ -41,7 +38,6 @@ const Product = ({ addProduct, isAuthenticated, addProductSingle, clearCart, isA
 
     const buyProduct = (e,id, price, name, quantity, picture ) => {
         e.preventDefault()
-        clearCart()
         addProductSingle({id, price, name, quantity, picture})
         
         // if(isAuthenticated){
@@ -107,7 +103,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         addProduct: (payload) => dispatch({type: 'ADD_PRODUCT', payload}),
-        clearCart: () => dispatch({type: 'CLEAR'}),
         addProductSingle: (payload) => dispatch({type: 'SUBMIT_ITEM', payload}) 
 
     }
