@@ -20,7 +20,7 @@ const Product = ({ addProduct, isAuthenticated, addProductSingle, isAdminAuth, t
         
         axios.get(`/product/id/${id}`)
         .then(res => res.data)
-        .then(data => {setProduct(data); setMainImageSrc(data.productPicture.data)}).catch(error => {
+        .then(data => {setProduct(data); setMainImageSrc(data.extraImage1.data)}).catch(error => {
             navigate('/', {replace: true})
         })
         
