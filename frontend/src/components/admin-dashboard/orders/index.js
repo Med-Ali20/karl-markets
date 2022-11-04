@@ -39,7 +39,7 @@ const Index = ( { token, rank } ) => {
 
     useEffect(() => {
         if(rank === 'chief-admin'){
-            setInputField(true)
+            return setInputField(true)
         }
         getOrders()
 

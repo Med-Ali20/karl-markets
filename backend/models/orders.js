@@ -43,7 +43,7 @@ const orderSchema = new mongoose.Schema({
                         required: true
                     },
                     productPicture: {
-                        type: Buffer,
+                        type: String,
                         required: true
                     }
                 }
