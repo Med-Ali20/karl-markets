@@ -37,7 +37,7 @@ const Index = ({ token, showMessage, hideMessage }) => {
 
     const uploadImage = (e, setState) => {
         e.preventDefault()
-        const client = filestack.init('AF9ysaTqQ8o6usQFiMndgz')
+        const client = filestack.init('AbfKBGFGMRzeAj9M3txiKz')
         client.picker({imageMax: [350, 350], maxFiles: 1, onUploadDone: res => {
             setState(res.filesUploaded[0].url)
         }}).open()
@@ -55,12 +55,17 @@ const Index = ({ token, showMessage, hideMessage }) => {
             console.log(res)
             setLoading(false)
             setProductName('');
-            setCategory('');
+            setCategory('أدوات منزلية');
             setPrice('');
             setDescription('')
             setProductPicture(null)
             showMessage()
             setTimeout(hideMessage, 3000)
+            setProductPicture('')
+            setExtraImage1('')
+            setExtraImage2('')
+            setExtraImage3('')
+            setExtraImage4('')
         }).catch(e => {
             setError(true)
             setLoading(false)
