@@ -20,7 +20,7 @@ const Product = ({ addProduct, isAuthenticated, addProductSingle, isAdminAuth, t
         
         axios.get(`/product/id/${id}`)
         .then(res => res.data)
-        .then(data => {setProduct(data); setMainImageSrc(data.extraImage1.data)}).catch(error => {
+        .then(data => {setProduct(data); setMainImageSrc(data.productPicture)}).catch(error => {
             navigate('/', {replace: true})
         })
         
@@ -78,12 +78,12 @@ const Product = ({ addProduct, isAuthenticated, addProductSingle, isAdminAuth, t
                     </div>
                 </div>
                 <div className={styles.showcase} >
-                    <div className={styles.showcaseMain} > <img src={`data:image/jpeg;base64, ${imgProcessor(mainImageSrc)}`} className={styles.mainImage} /> </div>
+                    <div className={styles.showcaseMain} > <img src={mainImageSrc} className={styles.mainImage} width="350px" height="500px"/> </div>
                     <div className={styles.subImages} >
-                        <div onClick={() => {setMainImageSrc(product.extraImage1.data)}}  tabIndex="-1"> <img src={`data:image/jpeg;base64, ${imgProcessor(product.extraImage1.data)}`}  className={styles.subImage} /> </div>
-                        <div onClick={() => {setMainImageSrc(product.extraImage2.data)}}  tabIndex="-1"> <img src={`data:image/jpeg;base64, ${imgProcessor(product.extraImage2.data)}`}  className={styles.subImage} /> </div>
-                        <div onClick={() => {setMainImageSrc(product.extraImage3.data)}}  tabIndex="-1"> <img src={`data:image/jpeg;base64, ${imgProcessor(product.extraImage3.data)}`}  className={styles.subImage} /> </div>
-                        <div onClick={() => {setMainImageSrc(product.extraImage4.data)}}  tabIndex="-1"> <img src={`data:image/jpeg;base64, ${imgProcessor(product.extraImage4.data)}`}  className={styles.subImage} /> </div>
+                        <div onClick={() => {setMainImageSrc(product.extraImage1)}}  tabIndex="-1"> <img src={product.extraImage1}  className={styles.subImage} /> </div>
+                        <div onClick={() => {setMainImageSrc(product.extraImage2)}}  tabIndex="-1"> <img src={product.extraImage2}  className={styles.subImage} /> </div>
+                        <div onClick={() => {setMainImageSrc(product.extraImage3)}}  tabIndex="-1"> <img src={product.extraImage3}  className={styles.subImage} /> </div>
+                        <div onClick={() => {setMainImageSrc(product.extraImage4)}}  tabIndex="-1"> <img src={product.extraImage4}  className={styles.subImage} /> </div>
                     </div>
                 </div> 
         </div> : <Spinner /> }</>

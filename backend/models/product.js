@@ -24,19 +24,19 @@ const productSchema = new mongoose.Schema({
         default: 'available',
     },
     productPicture: {
-        type: Buffer,
+        type: String,
     },
     extraImage1: {
-        type: Buffer
+        type: String
     },
     extraImage2: {
-        type: Buffer
+        type: String
     },
     extraImage3: {
-        type: Buffer
+        type: String
     },
     extraImage4: {
-        type: Buffer
+        type: String
     }
 })
 

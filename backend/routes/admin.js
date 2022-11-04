@@ -50,18 +50,7 @@ router.post('/dashboard/orders', auth, async (req, res) => {
 
 router.post('/product', upload.array('photos'), auth, async (req, res) => {
     try{
-        const productPicture = await sharp(req.files[0].buffer).resize({width: 180, height: 180}).jpeg().toBuffer()
-        const extraImage1 = await sharp(req.files[1].buffer).resize({width: 350, height: 350}).jpeg().toBuffer()
-        const extraImage2 = await sharp(req.files[2].buffer).resize({width: 350, height: 350}).jpeg().toBuffer()
-        const extraImage3 = await sharp(req.files[3].buffer).resize({width: 350, height: 350}).jpeg().toBuffer()
-        const extraImage4 = await sharp(req.files[4].buffer).resize({width: 350, height: 350}).jpeg().toBuffer()
-
         const product = new Product(req.body)
-        product.productPicture = productPicture
-        product.extraImage1 = extraImage1
-        product.extraImage2 = extraImage2
-        product.extraImage3 = extraImage3
-        product.extraImage4 = extraImage4
         await product.save()
         res.status(201).json(product)
     }

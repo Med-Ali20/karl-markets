@@ -122,7 +122,7 @@ const Category = ({addProduct, isAuthenticated, addProductSingle, clearCart, sho
                 <div className={styles.productCard} key={el._id} >
                     <Link to={`/product/${el._id}`} >
                         <div className={styles.productImg} >
-                            <img src={`data:image/jpeg;base64,${imgProcessor(el.productPicture.data)}`} width="320rem" height="270rem" />
+                            <img src={el.productPicture} width="320rem" height="270rem" />
                         </div>
                     </Link >
                     <Link to={`/product/${el._id}`} ><h2 className={styles.productName} > {el.productName} </h2> </Link>
