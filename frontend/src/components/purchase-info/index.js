@@ -19,7 +19,7 @@ const Index = ( { cart, incrementQuantity, decrementQuantity, removeItem } ) => 
         return(
             
                     <div className={styles.tableItem} key={el.productId} >
-                        <div ><img src={`data:image/jpeg;base64,${imgProcessor(el.productPicture.data)}`} className={styles.productImage} width="320rem" onClick={() => navigate(`/product/${el.productId}`)}  /></div>
+                        <div ><img src={el.productPicture} className={styles.productImage} width="320rem" onClick={() => navigate(`/product/${el.productId}`)}  /></div>
                         <h3 className={styles.productName} onClick={() => navigate(`/product/${el.productId}`)} >{el.productName}</h3>
                         <h3 className={styles.itemPrice} >{el.productPrice} <span className={styles.pound} >ج</span></h3>
                         <div className={styles.quantityArea} >

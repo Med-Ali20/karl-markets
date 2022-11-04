@@ -38,7 +38,7 @@ const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage })
     const productCards = products.map(el => {
         return (
                 <div className={styles.productCard} key={el.productId} >
-                    <div className={styles.productImage} > <img src={`data:image/jpeg;base64,${imgProcessor(el.productPicture.data)}`} width="200rem" /> </div>
+                    <div className={styles.productImage} > <img src={el.productPicture} width="200rem" /> </div>
                     <div className={styles.productInfoText} >
                         <h3 className={styles.productName} >{el.productName} </h3>
                         <h3 className={styles.productPrice} ><span>ج</span>{el.productPrice}</h3>
