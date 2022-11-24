@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e7ef92bb.css",
+    "main.js": "/static/js/main.1d13c2d0.js",
+    "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
+    "static/media/pet-products.png": "/static/media/pet-products.a07dc2f400d18f5e26c3.png",
+    "static/media/logo-1.png": "/static/media/logo-1.f1b86349446506a5162c.png",
+    "static/media/hero2.jpg": "/static/media/hero2.c6210ccaace4944d5624.jpg",
+    "static/media/furnature.png": "/static/media/furnature.3e4602d8e09d2aa906a4.png",
+    "static/media/hero-img.png": "/static/media/hero-img.b1ad594039c275a7bff3.png",
+    "static/media/hero3.jpg": "/static/media/hero3.8260a6d5824e8b03f301.jpg",
+    "static/media/background-shopping-bags.png": "/static/media/background-shopping-bags.c53b99ac2a8435436d43.png",
+    "static/media/computer-accessories.png": "/static/media/computer-accessories.4fc97ec43fae72ad5b65.png",
+    "static/media/smart-watches.png": "/static/media/smart-watches.9c750993d6d7b5c30544.png",
+    "static/media/menu-1.png": "/static/media/menu-1.8d822e2599a65e63ab69.png",
+    "static/media/sign-up.png": "/static/media/sign-up.07d1cb35c280ec2b2bd9.png",
+    "static/media/hero1.jpg": "/static/media/hero1.b1ca9948a5113dcc64dc.jpg",
+    "static/media/clothes2.jpg": "/static/media/clothes2.ddc5aef19965cb1d52f0.jpg",
+    "static/media/hero4.jpg": "/static/media/hero4.48727e51a359f2e4849e.jpg",
+    "static/media/bags2.jpg": "/static/media/bags2.b11880da425fc72803fe.jpg",
+    "static/media/personal-care.png": "/static/media/personal-care.4de1d08e1d69979e6a35.png",
+    "static/media/envelope.png": "/static/media/envelope.430182aaf075a1dc7d01.png",
+    "index.html": "/index.html",
+    "main.e7ef92bb.css.map": "/static/css/main.e7ef92bb.css.map",
+    "main.1d13c2d0.js.map": "/static/js/main.1d13c2d0.js.map",
+    "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e7ef92bb.css",
+    "static/js/main.1d13c2d0.js"
+  ]
+}
