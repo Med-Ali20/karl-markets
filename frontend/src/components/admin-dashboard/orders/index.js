@@ -3,6 +3,7 @@ import styles from './styles/user-dashboard.module.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+/* eslint-disable */
 
 
 
@@ -10,6 +11,7 @@ const Index = ( { token, rank } ) => {
     const [orders, setOrders] = useState([])
     const [inputField, setInputField] = useState(undefined)
     const [salesManCode, setSalesManCode] = useState(undefined)
+    const [hasMore, setHasMore] = useState(true)
     const [skip, setSkip] = useState(0)
 
     const getOrders = (e, salesManC, tkn) => {
@@ -41,7 +43,7 @@ const Index = ( { token, rank } ) => {
         }
         getOrders()
 
-    },[getOrders, rank])
+    },[])
 
     
     const ordersList = orders.length > 0 ? orders.map(el => {
@@ -66,7 +68,7 @@ const Index = ( { token, rank } ) => {
                             return(
                                 <>
                                  <div className={styles.tableItem} key={prod.productId} >
-                                    <img src={prod.productPicture} alt="" width="270rem" className={styles.productImage} />
+                                    <img src={prod.productPicture} width="270rem" className={styles.productImage} />
                                     <h3 className={styles.productName} > { prod.productName } </h3>
                                     <h3 className={styles.itemPrice} > { prod.productPrice } <span className={styles.pound} >ج</span></h3>
                                     <div className={styles.quantityControls} >
