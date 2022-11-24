@@ -1,7 +1,7 @@
 import React from 'react'
 import * as filestack from 'filestack-js'
 import styles from './styles/admin-dashboard.module.css'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'

@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import imgProcessor from '../../utils/imgProcessor'
 import { Spinner } from '../../utils/Spinner'
+/* eslint-disable */
 
 
 const Index = ( { token } ) => {

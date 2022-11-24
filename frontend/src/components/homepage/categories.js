@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './categories.module.css'
 import { Link } from 'react-router-dom'
-
+/* eslint-disable */
 export default function categories() {
     return (
         <section className={styles.categories} >

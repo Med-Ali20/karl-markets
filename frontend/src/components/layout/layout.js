@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
 import searchIcon from '../../assets/icons/search.png'
-import userIcon from '../../assets/icons/user-b.png'
 import shoppingCartImage from '../../assets/icons/shopping-cart-b.png'
 import logo from '../../assets/icons/logo-1.png'
 import styles from './styles/layout.module.css'
@@ -10,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import signUpIcon from '../../assets/icons/sign-up.png'
 import logout from '../../assets/icons/logout.png'
+/* eslint-disable */
 
 
 const Layout = ({children, isAuthenticated, isAdminAuth, showMessage, messageText, isLoading }) => {

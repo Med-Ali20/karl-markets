@@ -5,10 +5,9 @@ import arrow from '../../assets/icons/arrow.png'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import imgProcessor from '../../utils/imgProcessor'
 import { connect } from 'react-redux'
 import { Spinner } from '../../utils/Spinner'
-
+/* eslint-disable */
 
 const Product = ({ addProduct, isAuthenticated, addProductSingle, isAdminAuth, token }) => {
     const [mainImageSrc, setMainImageSrc] = useState('')

@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+/* eslint-disable */
 
 const Index = ({ setUserAuthentication, cart, boughtItem, isAuthenticated }) => {
     const [email, setEmail] = useState('')

@@ -3,6 +3,7 @@ import background from '../../assets/images/background-shopping-bags.png'
 import icon from '../../assets/icons/shopping-bag.png'
 import styles from './allProducts.module.css'
 import { Link } from 'react-router-dom'
+/* eslint-disable */
 
 export default function allProducts() {
     return (

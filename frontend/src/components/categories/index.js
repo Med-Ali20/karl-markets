@@ -6,11 +6,10 @@ import arrow from '../../assets/icons/arrow.png'
 import { useEffect } from 'react'
 import { useParams, Link, useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
-import imgProcessor from '../../utils/imgProcessor'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { connect } from 'react-redux'
 import { Spinner } from '../../utils/Spinner'
-
+/* eslint-disable */
 
 const Category = ({addProduct, isAuthenticated, addProductSingle, clearCart, showMessage, hideMessage, setLoader, disableLoader }) => {
 

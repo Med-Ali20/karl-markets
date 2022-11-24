@@ -1,7 +1,6 @@
 import React from 'react'
 import passwordIcon from '../../assets/icons/padlock.png'
 import emailIcon from '../../assets/icons/envelope.png'
-import arrow from '../../assets/icons/arrow.png'
 import { useState } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
@@ -47,18 +46,18 @@ const Index = ({ setAdminAuthentication }) => {
                 <div className={styles.emailField} >
                     <div className={styles.emailInput} >
                         <input type="text" value={name} onChange={e => setName(() => e.target.value)} id="email" className={styles.inputField} />
-                        <div><img src={emailIcon}  className={styles.img}  /></div> 
+                        <div><img src={emailIcon} alt="" className={styles.img}  /></div> 
                     </div>
                     <label htmlFor="email" className={styles.label} >الاسم</label>     
                 </div>
                 <div className={styles.passwordField} >
                     <div className={styles.passwordInput} >
                         <input type="password"  value={password} onChange={e => setPassword(() => e.target.value)} id="password" className={styles.inputField} />
-                        <div ><img src={passwordIcon} className={styles.img} /></div> 
+                        <div ><img src={passwordIcon} alt="" className={styles.img} /></div> 
                     </div>
                     <label htmlFor="password" className={styles.label} >كلمة السر</label>     
                 </div>
-                <a onClick={e => submitAccount(e, name, password)} className={styles.cta} >تسجيل الدخول</a>
+                <button onClick={e => submitAccount(e, name, password)} className={styles.cta} >تسجيل الدخول</button>
                 {error ? <p className={styles.error} style={{color: 'red', fontSize: '1.6rem'}} >خطأ في تسجيل الدخول</p> : ''}
             </form>
             

@@ -3,9 +3,9 @@ import arrow from '../../assets/icons/arrow.png'
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import imgProcessor from '../../utils/imgProcessor'
 import styles from './styles/purchase.module.css'
 import { Link } from 'react-router-dom'
+/* eslint-disable */
 
 const Index = ( { cart, incrementQuantity, decrementQuantity, removeItem } ) => {
     const [products, setProducts] = useState([])

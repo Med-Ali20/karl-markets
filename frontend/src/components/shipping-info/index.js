@@ -6,8 +6,8 @@ import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import sha256 from 'crypto-js/sha256';
-import imgProcessor from '../../utils/imgProcessor'
 import { Spinner } from '../../utils/Spinner'
+/* eslint-disable */
 
 const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage }) => {
 

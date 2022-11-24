@@ -7,7 +7,8 @@ import hero3 from '../../assets/images/hero3.jpg'
 import hero4 from '../../assets/images/hero4.jpg'
 import arrow from '../../assets/icons/arrow.png'
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+/* eslint-disable */
 
 
 export default function Hero() {

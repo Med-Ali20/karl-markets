@@ -4,6 +4,7 @@ import userAuth from './reducers/userAuth'
 import cart from './reducers/cart'
 import message from './reducers/message'
 import { createStore, combineReducers } from 'redux'
+/* eslint-disable */
 
 
 const reducer = combineReducers({

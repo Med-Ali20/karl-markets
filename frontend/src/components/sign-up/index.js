@@ -8,6 +8,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+/* eslint-disable */
 
 
 const Index = ( { setUserAuthentication, cart, boughtItem, isAuthenticated } ) => {

@@ -2,6 +2,8 @@ const inititalState = {
     products:[]
 }
 
+/* eslint-disable */
+
 const cartReducer = (state=inititalState, action) => {
     if(action.type === 'ADD_PRODUCT'){
 

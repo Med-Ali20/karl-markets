@@ -10,8 +10,7 @@ import Login from '../components/login'
 import Product from '../components/product'
 import PurchaseInfo from '../components/purchase-info'
 import ShippingInfo from '../components/shipping-info'
-import SignUp from '../components/sign-up'
-import UserDashboard from '../components/user-dashboard'
+/* eslint-disable */
 
 
 const AppRoutes = ({ isAdminAuth, isAuth }) => {
