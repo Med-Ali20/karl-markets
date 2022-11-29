@@ -15,9 +15,7 @@ const orderSchema = new mongoose.Schema({
     phoneNumber: {
         type: String,
         required: true,
-        trim: true,
-        minLength: 11,
-        maxLength: 11
+        trim: true
     },
     province: {
         type: String,
@@ -45,6 +43,9 @@ const orderSchema = new mongoose.Schema({
                     productPicture: {
                         type: String,
                         required: true
+                    },
+                    currency: {
+                        type: String
                     }
                 }
         ],

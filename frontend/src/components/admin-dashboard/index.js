@@ -13,6 +13,7 @@ const Index = ({ token, showMessage, hideMessage }) => {
     const [productName, setProductName] = useState('')
     const [category, setCategory] = useState('أدوات منزلية')
     const [price, setPrice] = useState('')
+    const [currency, setCurrency] = useState('جنيه')
     const [description, setDescription] = useState('')
     const [productPicture, setProductPicture] = useState("")
     const [extraImage1, setExtraImage1] = useState("")
@@ -24,6 +25,7 @@ const Index = ({ token, showMessage, hideMessage }) => {
     FD.append('productName', productName)
     FD.append('categoryName', category)
     FD.append('productPrice', price)
+    FD.append('currency', currency)
     FD.append('productDescription', description)
     FD.append('productPicture', productPicture)
     FD.append('extraImage1', extraImage1)
@@ -54,9 +56,10 @@ const Index = ({ token, showMessage, hideMessage }) => {
         }).then(res => {
             console.log(res)
             setLoading(false)
-            setProductName('');
-            setCategory('أدوات منزلية');
-            setPrice('');
+            setProductName('')
+            setCategory('أدوات منزلية')
+            setPrice('')
+            setCurrency('ج')
             setDescription('')
             setProductPicture(null)
             showMessage()
@@ -95,6 +98,14 @@ const Index = ({ token, showMessage, hideMessage }) => {
                     <div className={styles.inputArea} >
                         <input type="text" value={price} onChange={e => setPrice(() => e.target.value)} className={styles.inputField} id="price" />
                         <label htmlFor="price" className={styles.label} >السعر</label>
+                    </div>
+
+                    <div className={styles.inputArea} >
+                        <select name="currency" id="currency" onChange={e => setCurrency(e.target.value)} className={styles.inputField}>
+                            <option value="جنيه">جنيه</option>
+                            <option value="ريال">ريال</option>
+                        </select>
+                        <label htmlFor="currency" className={styles.label} >العملة</label>
                     </div>
                     
                     <div className={styles.inputArea} >

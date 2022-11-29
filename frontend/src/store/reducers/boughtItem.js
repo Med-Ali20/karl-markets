@@ -4,6 +4,7 @@ const inititalState = {
     productName: '',
     productQuantity: '',
     productPicture: '',
+    currency: 'جنيه',
     isProduct: false
 }
 
@@ -17,6 +18,7 @@ const boughtItemReducer = (state = inititalState, action) => {
                 productName: action.payload.name,
                 productQuantity: action.payload.quantity,
                 productPicture: action.payload.picture,
+                currency: action.payload.currency,
                 isProduct: true
             }
 

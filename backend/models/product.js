@@ -37,6 +37,9 @@ const productSchema = new mongoose.Schema({
     },
     extraImage4: {
         type: String
+    },
+    currency: {
+        type: String
     }
 })
 

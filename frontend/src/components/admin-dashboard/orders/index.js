@@ -65,16 +65,17 @@ const Index = ( { token, rank } ) => {
                     </div>
                     <div className={styles.tableContent} >
                         { el.products.map(prod => {
+                            console.log(prod)
                             return(
                                 <>
                                  <div className={styles.tableItem} key={prod.productId} >
                                     <img src={prod.productPicture} width="270rem" className={styles.productImage} />
                                     <h3 className={styles.productName} > { prod.productName } </h3>
-                                    <h3 className={styles.itemPrice} > { prod.productPrice } <span className={styles.pound} >ج</span></h3>
+                                    <h3 className={styles.itemPrice} > { prod.productPrice } <span className={styles.pound}>{prod.currency === 'ريال' ? 'ريال': 'ج'}</span></h3>
                                     <div className={styles.quantityControls} >
                                         <h3 className={styles.quantity} > {prod.productQuantity} </h3>
                                     </div>
-                                    <h3 className={styles.total} ><span className={styles.totalPriceText} >{prod.productQuantity * prod.productPrice}</span>   <span className={styles.pound2} >ج</span>  </h3>
+                                    <h3 className={styles.total} ><span className={styles.totalPriceText} >{prod.productQuantity * prod.productPrice}</span></h3>
                                 </div>
                                 </>
                             )

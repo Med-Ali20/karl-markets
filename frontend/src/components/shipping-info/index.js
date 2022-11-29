@@ -26,8 +26,10 @@ const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage })
     useEffect(() => {
         if(cart.products.length > 0) {
             setProducts(() => cart.products)
+            console.log(cart.products)
         } else {
             setProducts(() =>[boughtItem])
+            console.log(boughtItem)
         }
 
     }, [cart.products])
@@ -41,7 +43,7 @@ const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage })
                     <div className={styles.productImage} > <img src={el.productPicture} width="200rem" /> </div>
                     <div className={styles.productInfoText} >
                         <h3 className={styles.productName} >{el.productName} </h3>
-                        <h3 className={styles.productPrice} ><span>ج</span>{el.productPrice}</h3>
+                        <h3 className={styles.productPrice} >{el.productPrice}</h3>
                         <span className={styles.quantity} >{el.productQuantity}</span>
                     </div> 
                 </div>
@@ -92,9 +94,6 @@ const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage })
         if(!form.customerName || !form.fullAddress || !form.phoneNumber || !form.province || !form.products) {
             return setError({errorMessage: 'برجاء التأكد من اضافة البيانات الضرورية', isError: true})
         }
-        if(form.phoneNumber.length < 11) { 
-            return setError({errorMessage: 'رقم المحمول أقل من 11 خانة', isError: true})
-         }
         setLoading(true)
         axios.post('/order', form, {
             headers: {
@@ -142,7 +141,7 @@ const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage })
                     </div>
                     <div className={styles.inputArea} >
                         <input type="text" value={province} onChange={(e) => { setProvince(() => e.target.value) } } className={styles.inputField} id="governorate" />
-                        <label htmlFor="governorate" className={styles.label} >المحافظة</label>
+                        <label htmlFor="governorate" className={styles.label} >المحافظة / المدينة</label>
                     </div>
                     <div className={styles.inputArea} >
                         <input type="text" value={address} onChange={(e) => { setAddress(() => e.target.value) } } className={styles.inputField} id="address" />
@@ -173,18 +172,19 @@ const Index = ({ cart, token, boughtItem, clearCart, showMessage, hideMessage })
                             productName: el.productName,
                             productQuantity: el.productQuantity,
                             productPrice: el.productPrice,
-                            productPicture: el.productPicture
+                            productPicture: el.productPicture,
+                            currency: el.currency
                         }
                     }),
                     salesmanCode: salesManCode
 
-                },token )} className={styles.cta} ><span><img src={arrow} className={styles.ctaArrow}  /></span>ارسال الطلب</a>
+                },token )} className={styles.cta} ><span><img src={arrow} className={styles.ctaArrow} /></span>ارسال الطلب</a>
                 {error.isError ? <p style={{color: 'red', fontSize: '1.7rem'}} >{error.errorMessage}</p> : ''}
                 </form>
             </div>
             <div className={styles.purchaseInfoSection}>
                 {products.length === 0? <></>: productCards}
-                <h3 className={styles.totalPaid} >:اجمالي المدفوعات <span><span>ج</span>{ products.length === 0? 0:products.map(el => el.productPrice* el.productQuantity).reduce(reducer) }</span> </h3>
+                <h3 className={styles.totalPaid} >:اجمالي المدفوعات <span>{ products.length === 0? 0:products.map(el => el.productPrice* el.productQuantity).reduce(reducer) }</span> </h3>
             </div>
         </div>
     )

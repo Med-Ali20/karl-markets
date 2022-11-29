@@ -12,7 +12,8 @@ const cartReducer = (state=inititalState, action) => {
             productPrice: action.payload.price,
             productName: action.payload.name,
             productQuantity: action.payload.quantity,
-            productPicture: action.payload.picture
+            productPicture: action.payload.picture,
+            currency: action.payload.currency
         })
 
         const alreadyAdded = state.products.find(el => el.productId === newProducts[newProducts.length - 1].productId)

@@ -26,18 +26,18 @@ const Product = ({ addProduct, isAuthenticated, addProductSingle, isAdminAuth, t
     },[])
   
 
-    const addToCart = (e,id, price, name, quantity, picture ) => {
+    const addToCart = (e,id, price, name, quantity, picture, currency ) => {
         e.preventDefault()
-        addProduct({id, price, name, quantity, picture})
+        addProduct({id, price, name, quantity, picture, currency})
         // if(isAuthenticated) {
             return navigate('/purchase-info')
         // }
         // navigate('/sign-up')
     }
 
-    const buyProduct = (e,id, price, name, quantity, picture ) => {
+    const buyProduct = (e,id, price, name, quantity, picture, currency ) => {
         e.preventDefault()
-        addProductSingle({id, price, name, quantity, picture})
+        addProductSingle({id, price, name, quantity, picture, currency})
         
         // if(isAuthenticated){
             return navigate('/shipping-info')
@@ -65,13 +65,13 @@ const Product = ({ addProduct, isAuthenticated, addProductSingle, isAdminAuth, t
         <div className={styles.productSection} >
                 <div className={styles.productDetails} >
                     <h1 className={styles.productName} > {product.productName} </h1>
-                    <h1 className={styles.productName} style={{fontWeight: '300'}} > {product.productPrice} <span>:السعر</span> </h1>
+                    <h1 className={styles.productName} style={{fontWeight: '300'}} ><span>السعر</span> <span>:{product.productPrice}</span> <span>{product.currency === 'ريال' ? 'ريال' : 'ج'}</span> </h1>
                     <p className={styles.productDescription} > {product.productDescription} </p>
                     <div className={styles.cta} >
                         { !isAdminAuth ?
                         <>
-                            <a href="" className={styles.addToCart}  onClick={(e)=>{addToCart(e,product._id,product.productPrice, product.productName, 1, product.productPicture)}} > <span> <img src={addIcon} className={styles.addIcon}  /> </span>  اضف الى السلة </a>
-                            <a href="" className={styles.buy} onClick={(e)=>{buyProduct(e, product._id, product.productPrice, product.productName, 1, product.productPicture)}} > <span> <img src={arrow}  className={styles.arrow} /> </span>  شراء  </a>
+                            <a href="" className={styles.addToCart}  onClick={(e)=>{addToCart(e,product._id,product.productPrice, product.productName, 1, product.productPicture, product.currency)}} > <span> <img src={addIcon} className={styles.addIcon}  /> </span>  اضف الى السلة </a>
+                            <a href="" className={styles.buy} onClick={(e)=>{buyProduct(e, product._id, product.productPrice, product.productName, 1, product.productPicture, product.currency)}} > <span> <img src={arrow}  className={styles.arrow} /> </span>  شراء  </a>
                         </>
                         :<a href="" className={styles.delete} onClick={(e) =>{deleteProduct(e, product._id)}} > مسح المنتج  </a>}
                     </div>
