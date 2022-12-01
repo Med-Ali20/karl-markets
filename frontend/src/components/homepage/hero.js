@@ -44,7 +44,7 @@ export default function Hero() {
                         <div className={styles.galleryItemText} >
                             <h1 className={styles.galleryHeader} >عروضنا المفضلة</h1>
                             <h2 className={`${styles.galleryProductName} ${styles.galleryProductName1} `} >قميص وبنطلون كلاسيك</h2>
-                            <Link to="/product/632b2cd74cb8a1fe6737602f" className={styles.galleryCta} ><span><img src={arrow} className={styles.ctaArrow}  alt=""/></span>اطلب الان</Link>
+                            <Link to="/product/63803fdacdc80495d8958a3d" className={styles.galleryCta} ><span><img src={arrow} className={styles.ctaArrow}  alt=""/></span>اطلب الان</Link>
                         </div>
                     </div>
                     <img src={hero1}  className={styles.galleryProductPicture}  alt="" />

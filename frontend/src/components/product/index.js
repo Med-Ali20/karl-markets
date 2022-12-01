@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 import { Spinner } from '../../utils/Spinner'
 /* eslint-disable */
 
-const Product = ({ addProduct, isAuthenticated, addProductSingle, isAdminAuth, token }) => {
+const Product = ({ addProduct, isAuthenticated, addProductSingle, isAdminAuth, token, showMessage, hideMessage }) => {
     const [mainImageSrc, setMainImageSrc] = useState('')
     const [product, setProduct] = useState({})
     const navigate = useNavigate()
@@ -21,6 +21,8 @@ const Product = ({ addProduct, isAuthenticated, addProductSingle, isAdminAuth, t
         .then(res => res.data)
         .then(data => {setProduct(data); setMainImageSrc(data.productPicture)}).catch(error => {
             navigate('/', {replace: true})
+            showMessage('هذا المنتج غير متوفر حاليا')
+            setTimeout(hideMessage, 3000)
         })
         
     },[])
@@ -102,7 +104,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         addProduct: (payload) => dispatch({type: 'ADD_PRODUCT', payload}),
-        addProductSingle: (payload) => dispatch({type: 'SUBMIT_ITEM', payload}) 
+        addProductSingle: (payload) => dispatch({type: 'SUBMIT_ITEM', payload}),
+        showMessage: (payload) => dispatch({type: 'SHOW_MESSAGE',payload: payload}),
+        hideMessage: () => dispatch({type: 'HIDE_MESSAGE'}) 
 
     }
 }
