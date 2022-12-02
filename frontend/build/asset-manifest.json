@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.e7ef92bb.css",
-    "main.js": "/static/js/main.1d13c2d0.js",
+    "main.css": "/static/css/main.b7c1ce87.css",
+    "main.js": "/static/js/main.beb7ff4a.js",
     "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
     "static/media/pet-products.png": "/static/media/pet-products.a07dc2f400d18f5e26c3.png",
     "static/media/logo-1.png": "/static/media/logo-1.f1b86349446506a5162c.png",
@@ -21,12 +21,12 @@
     "static/media/personal-care.png": "/static/media/personal-care.4de1d08e1d69979e6a35.png",
     "static/media/envelope.png": "/static/media/envelope.430182aaf075a1dc7d01.png",
     "index.html": "/index.html",
-    "main.e7ef92bb.css.map": "/static/css/main.e7ef92bb.css.map",
-    "main.1d13c2d0.js.map": "/static/js/main.1d13c2d0.js.map",
+    "main.b7c1ce87.css.map": "/static/css/main.b7c1ce87.css.map",
+    "main.beb7ff4a.js.map": "/static/js/main.beb7ff4a.js.map",
     "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e7ef92bb.css",
-    "static/js/main.1d13c2d0.js"
+    "static/css/main.b7c1ce87.css",
+    "static/js/main.beb7ff4a.js"
   ]
 }
